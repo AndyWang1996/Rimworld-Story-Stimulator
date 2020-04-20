@@ -34,7 +34,7 @@ public class MainFrame {
 	
 	private JPanel textPanel;
 	private JScrollPane container;
-	private JTextArea stroyTextArea;
+	public static JTextArea stroyTextArea;
 			
 	private JPanel characterPanel;
 	private JList<Human> characterList;
@@ -201,6 +201,10 @@ public class MainFrame {
 		rESOURCEJLabel.setText("RESOURCE:" + Integer.toString(RESOURCE));
 		tECHJLabel.setText("TEC:" + Integer.toString(TEC));
 		uNITYJLabel.setText("UNITY:" + Integer.toString(UNITY));
+	}
+	
+	public static JTextArea geTextArea() {
+		return stroyTextArea;
 	}
 	
 	
