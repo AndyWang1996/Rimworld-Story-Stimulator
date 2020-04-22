@@ -3,26 +3,22 @@ package framework;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
-import javax.swing.DebugGraphics;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JSplitPane;
 import javax.swing.JTextArea;
 import javax.swing.border.TitledBorder;
-import javax.swing.plaf.basic.BasicOptionPaneUI.ButtonActionListener;
-import javax.xml.bind.annotation.XmlElementDecl.GLOBAL;
 
+import fitness.Dice;
 import objects.Human;
 
 public class MainFrame {
@@ -58,10 +54,11 @@ public class MainFrame {
 	private JLabel uNITYJLabel;			//prople's confidence
 	public static int UNITY = 0;
 	
-	
 	private JScrollPane clistJScrollPane;
 	
 	protected ActionListener clickActionListener;
+	
+	private Dice mainDice;
 	
 	private MainFrame() {
 		
@@ -165,6 +162,8 @@ public class MainFrame {
 		
 		mainFrame.setVisible(true);
 		
+		start();
+		
 	}
 	
 	private void Do_sth_normal() {
@@ -179,6 +178,7 @@ public class MainFrame {
 		// TODO Display the story
 		stroyTextArea.append("bad");
 		refresh_status(4, 3, 2, 1);
+		mainDice.throw_a_dice("3d3");
 		stroyTextArea.append("\n");
 		
 	}
@@ -189,6 +189,10 @@ public class MainFrame {
 		refresh_status(1, 4, 3, 2);
 		stroyTextArea.append("\n");
 		
+	}
+	
+	private void start() {
+		mainDice = new Dice(stroyTextArea); 
 	}
 	
 	public void refresh_status(int fp, int rp, int tp, int up) {

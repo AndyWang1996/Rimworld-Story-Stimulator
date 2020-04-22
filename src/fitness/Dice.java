@@ -5,13 +5,16 @@ import java.util.StringTokenizer;
 
 import javax.swing.JTextArea;
 
-import framework.MainFrame;
-
 public class Dice {
 	
 	private Random random = new Random(System.currentTimeMillis());
+	JTextArea area;
 	
-	public int throw_a_dice(String command, JTextArea storyArea) {
+	public Dice(JTextArea storyArea) {
+		this.area = storyArea;
+	}
+	
+	public int throw_a_dice(String command) {
 		int result = 0;
 		/** 判定总共分为如下几类
 		 * 检定类，投掷1-100
@@ -24,19 +27,19 @@ public class Dice {
 		else if (command.contains("+"+"\n")) {
 			StringTokenizer t = new StringTokenizer(command,"+");
 			while(t.hasMoreElements()) {
-				result += multi_dice(t.nextToken(), storyArea);
+				result += multi_dice(t.nextToken());
 				if (t.hasMoreElements()) {
 					System.out.print("+"+"\n");
-					storyArea.append("+"+"\n");
+					area.append("+"+"\n");
 				}
 			}
 			System.out.print("="+result);
 			return result;	
 		}
 		else if (command.contains("d") && !command.contains("+")) {
-			result = multi_dice(command, storyArea);
+			result = multi_dice(command);
 			System.out.print("="+result+"\n");
-			storyArea.append("="+result+"\n");
+			area.append("="+result+"\n");
 			return result;
 		}
 		else{
@@ -45,35 +48,46 @@ public class Dice {
 	}
 	
 	public int successful_level_check(int check_point, int skill_point) {
-		return 0;
+		if (check_point <= 5) {
+			return 3;
+		}
+		else if (check_point>5 && check_point<=skill_point/2) {
+			return 2;
+		}
+		else if (check_point>skill_point/2 && check_point<=skill_point) {
+			return 1;
+		}
+		else {
+			return 0;
+		}
 	}
 	
-	private int multi_dice(String command, JTextArea storyArea) {
+	private int multi_dice(String command) {
 		int result = 0;
 		StringTokenizer t = new StringTokenizer(command,"d");
 		int ctr = Integer.parseInt(t.nextToken());
 		int range = Integer.parseInt(t.nextToken());
 		System.out.print("(");
-		storyArea.append("(");
+		area.append("(");
 		for (int i = 0; i < ctr; i++) {
 			int temp = random.nextInt(range)+1;
 			System.out.print(temp);
-			storyArea.append(Integer.toString(temp));
+			area.append(Integer.toString(temp));
 			if (i+1<ctr) {
 				System.out.print("+");
-				storyArea.append("+");
+				area.append("+");
 			}
 			result += temp;
 		}
 		System.out.print(")");
-		storyArea.append(")");
+		area.append(")");
 		return result;
 	}
 	
 	
 	
 	public static void main(String args[]) {
-		Dice dice = new Dice();
+//		Dice dice = new Dice();
 		for (int i = 0; i < 100; i++) {
 //			dice.throw_a_dice("100d100+10d10+12d34");
 			System.out.print("\n");
