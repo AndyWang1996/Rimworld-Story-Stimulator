@@ -168,7 +168,7 @@ public class MainFrame {
 	
 	private void Do_sth_normal() {
 		// TODO Display the story
-		stroyTextArea.append("normal");
+//		stroyTextArea.append("normal");
 		refresh_status(1, 2, 3, 4);
 		stroyTextArea.append("\n");
 		
@@ -176,16 +176,18 @@ public class MainFrame {
 
 	private void Do_sth_bad() {
 		// TODO Display the story
-		stroyTextArea.append("bad");
+//		stroyTextArea.append("bad");
 		refresh_status(4, 3, 2, 1);
-		mainDice.throw_a_dice("3d3");
+		mainDice.throw_a_dice("3d3+1d6");
+		mainDice.throw_a_dice("1d100");
+		mainDice.throw_a_dice("1d10+1d6+1d3");
 		stroyTextArea.append("\n");
 		
 	}
 
 	private void Do_sth_good() {
 		// TODO Display the story
-		stroyTextArea.append("good");
+//		stroyTextArea.append("good");
 		refresh_status(1, 4, 3, 2);
 		stroyTextArea.append("\n");
 		

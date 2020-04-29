@@ -24,16 +24,17 @@ public class Dice {
 			result = random.nextInt(100)+1;
 			return result;
 		}
-		else if (command.contains("+"+"\n")) {
+		else if (command.contains("d") && command.contains("+")) {
 			StringTokenizer t = new StringTokenizer(command,"+");
 			while(t.hasMoreElements()) {
 				result += multi_dice(t.nextToken());
 				if (t.hasMoreElements()) {
 					System.out.print("+"+"\n");
-					area.append("+"+"\n");
+					area.append("+");
 				}
 			}
 			System.out.print("="+result);
+			area.append("="+result+"\n");
 			return result;	
 		}
 		else if (command.contains("d") && !command.contains("+")) {
