@@ -7,14 +7,14 @@ import javax.swing.JTextArea;
 
 public class Dice {
 	
-	private Random random = new Random(System.currentTimeMillis());
-	JTextArea area;
+	private static Random random = new Random(System.currentTimeMillis());
+	static JTextArea area;
 	
 	public Dice(JTextArea storyArea) {
 		this.area = storyArea;
 	}
 	
-	public int throw_a_dice(String command) {
+	public static int throw_a_dice(String command) {
 		int result = 0;
 		/** 判定总共分为如下几类
 		 * 检定类，投掷1-100
@@ -63,7 +63,7 @@ public class Dice {
 		}
 	}
 	
-	private int multi_dice(String command) {
+	private static int multi_dice(String command) {
 		int result = 0;
 		StringTokenizer t = new StringTokenizer(command,"d");
 		int ctr = Integer.parseInt(t.nextToken());
@@ -84,8 +84,6 @@ public class Dice {
 		area.append(")");
 		return result;
 	}
-	
-	
 	
 	public static void main(String args[]) {
 //		Dice dice = new Dice();

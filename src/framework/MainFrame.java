@@ -58,8 +58,6 @@ public class MainFrame {
 	
 	protected ActionListener clickActionListener;
 	
-	private Dice mainDice;
-	
 	private MainFrame() {
 		
 		mainFrame = new JFrame("Keeper");
@@ -178,9 +176,9 @@ public class MainFrame {
 		// TODO Display the story
 //		stroyTextArea.append("bad");
 		refresh_status(4, 3, 2, 1);
-		mainDice.throw_a_dice("3d3+1d6");
-		mainDice.throw_a_dice("1d100");
-		mainDice.throw_a_dice("1d10+1d6+1d3");
+		Dice.throw_a_dice("3d3+1d6");
+		Dice.throw_a_dice("1d100");
+		Dice.throw_a_dice("1d10+1d6+1d3");
 		stroyTextArea.append("\n");
 		
 	}
@@ -194,7 +192,7 @@ public class MainFrame {
 	}
 	
 	private void start() {
-		mainDice = new Dice(stroyTextArea); 
+		new Dice(stroyTextArea); 
 	}
 	
 	public void refresh_status(int fp, int rp, int tp, int up) {
