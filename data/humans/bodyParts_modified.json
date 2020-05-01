@@ -1,0 +1,32 @@
+{
+  "description": "A list of common human body parts.",
+  "bodyParts": [
+    "arm",
+    "belly",
+    "cheek",
+    "ear",
+    "eye",
+    "feet",
+    "forearm",
+    "hand",
+    "knee",
+    "leg",
+    "lower leg",
+    "nose",
+    "shoulder",
+    "thigh",
+    "upper arm",
+  ],
+  "BackParts": [
+    "back",
+    "breast",
+    "buttocks",
+    "waist",
+  ],
+"LethalParts": [
+    "heart",
+    "neck",
+    "forehead",
+    "hand",
+  ]
+}

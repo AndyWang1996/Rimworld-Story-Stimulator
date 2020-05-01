@@ -30,17 +30,22 @@ public class Status {
 	
 	public String get_reason() {return status_reason;}
 	
+	public Status SetAStatus(String reason) {
+		this.status_reason = reason;
+		return this;
+	}
+	
 	public boolean _do_extend(int t){
-		time += t;
+		this.time += t;
 		return true;
 	}
 	
 	public boolean _do_shorten(int t) {
 		if (t >= time) {
-			time = -1;
+			this.time = -1;
 			return false;
 		}else {
-			time -= t;
+			this.time -= t;
 			return true;
 		}
 	}
