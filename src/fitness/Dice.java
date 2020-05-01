@@ -30,17 +30,17 @@ public class Dice {
 				result += multi_dice(t.nextToken());
 				if (t.hasMoreElements()) {
 					System.out.print("+"+"\n");
-					area.append("+");
+					if (area != null) {area.append("(");}
 				}
 			}
 			System.out.print("="+result);
-			area.append("="+result+"\n");
+			if (area != null) {area.append("(");}
 			return result;	
 		}
 		else if (command.contains("d") && !command.contains("+")) {
 			result = multi_dice(command);
 			System.out.print("="+result+"\n");
-			area.append("="+result+"\n");
+			if (area != null) {area.append("(");}
 			return result;
 		}
 		else{
@@ -69,19 +69,19 @@ public class Dice {
 		int ctr = Integer.parseInt(t.nextToken());
 		int range = Integer.parseInt(t.nextToken());
 		System.out.print("(");
-		area.append("(");
+		if (area != null) {area.append("(");}
 		for (int i = 0; i < ctr; i++) {
 			int temp = random.nextInt(range)+1;
 			System.out.print(temp);
-			area.append(Integer.toString(temp));
+			if (area != null) {area.append("(");}
 			if (i+1<ctr) {
 				System.out.print("+");
-				area.append("+");
+				if (area != null) {area.append("(");}
 			}
 			result += temp;
 		}
 		System.out.print(")");
-		area.append(")");
+		if (area != null) {area.append("(");}
 		return result;
 	}
 	

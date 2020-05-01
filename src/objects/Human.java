@@ -24,10 +24,13 @@ public class Human {
 		
 	}
 	
-	public Human creat_character(String type) {
+	public Human create_character(String type, String FirstName, String LastName) {
 		Human c = new Human();
-		this.firstname = "";//get random name
-		this.lastname = "";//get random name
+		this.firstname = FirstName;//get random name
+		this.lastname = LastName;//get random name
+		this.HP = 10;
+		this.food = 100;
+		this.san = 100;
 		do_create_event(type);//随机一个小人出现的故事，决定小人的身体状态和其他相关属性
 		return c;
 				
@@ -35,6 +38,11 @@ public class Human {
 
 	private void do_create_event(String type) {
 		// TODO Auto-generated method stub
+		if (type == "crash") {
+			this.HP -= Dice.throw_a_dice("1d3");
+			this.food -= Dice.throw_a_dice("1d30");
+			this.san -= Dice.throw_a_dice("1d50");
+		}
 		
 	}
 

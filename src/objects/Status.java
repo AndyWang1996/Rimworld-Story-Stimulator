@@ -2,16 +2,18 @@ package objects;
 
 public class Status {
 	
+	public boolean GoodOrBad;
 	public String status_name;
 	public String status_detail; //作为引发其他事件的原因
 	public String status_reason; //作为被其他事件引发的原因
 	public int time;
 	
-	public Status(String name, String datail, String reason, int time) {
+	public Status(String name, String datail, String reason, int time, Boolean GoodOrBadBoolean) {
 		// TODO Auto-generated constructor stub
 		this.status_name = name;
 		this.status_detail = datail;
 		this.time = time;
+		this.GoodOrBad = GoodOrBadBoolean;
 		if (reason != null) {
 			this.status_reason = reason;
 		}
@@ -19,6 +21,8 @@ public class Status {
 			this.status_reason = "no reason";
 		}
 	}
+	
+	public Boolean get_GoodOrBadBoolean() {return GoodOrBad;}
 	
 	public String get_name() {return status_name;}
 	

@@ -8,6 +8,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.File;
+import java.util.List;
+import java.util.Map;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -18,7 +21,11 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.border.TitledBorder;
 
+import com.alibaba.fastjson.JSON;
+
+import database.DataLoader;
 import fitness.Dice;
+import fitness.EventList;
 import objects.Human;
 
 public class MainFrame {
@@ -57,6 +64,10 @@ public class MainFrame {
 	private JScrollPane clistJScrollPane;
 	
 	protected ActionListener clickActionListener;
+	
+	public static EventList globaList = null;
+	
+	public static List<Human> characList = null;
 	
 	private MainFrame() {
 		
@@ -191,8 +202,21 @@ public class MainFrame {
 		
 	}
 	
+	@SuppressWarnings("rawtypes")
 	private void start() {
+		//creat dice
 		new Dice(stroyTextArea); 
+		
+		globaList = new EventList(stroyTextArea, characList);
+		
+		//load files
+		File FirstNameFile = new File("./data/humans/firstNames.json");
+		globaList.addIntoGlobalDataMap("firstNames", ((Map) JSON.parse(DataLoader.readJsonFile(FirstNameFile))).get("firstNames"));
+		
+		
+		File LastNameFile = new File("./data/humans/lastNames.json");
+		globaList.addIntoGlobalDataMap("lastNames", ((Map) JSON.parse(DataLoader.readJsonFile(LastNameFile))).get("lastNames"));
+
 	}
 	
 	public void refresh_status(int fp, int rp, int tp, int up) {
