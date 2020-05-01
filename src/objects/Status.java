@@ -1,28 +1,78 @@
 package objects;
 
+import java.io.File;
+import java.util.HashMap;
+import java.util.Map;
+
+import com.alibaba.fastjson.JSON;
+
+import database.DataLoader;
+
 public class Status {
 	
-	public boolean GoodOrBad;
+	public String GoodOrBad;
 	public String status_name;
 	public String status_detail; //作为引发其他事件的原因
 	public String status_reason; //作为被其他事件引发的原因
 	public int time;
 	
-	public Status(String name, String datail, String reason, int time, Boolean GoodOrBadBoolean) {
+	public Status(String name, String datail, String reason, int time, String GoodOrBadBoolean) {
 		// TODO Auto-generated constructor stub
 		this.status_name = name;
 		this.status_detail = datail;
 		this.time = time;
 		this.GoodOrBad = GoodOrBadBoolean;
-		if (reason != null) {
-			this.status_reason = reason;
-		}
-		else {
-			this.status_reason = "no reason";
-		}
+		this.status_reason = reason;
 	}
 	
-	public Boolean get_GoodOrBadBoolean() {return GoodOrBad;}
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	public static Map<String, Status> generate_body_status_list() {
+		Map<String, Status> result = new HashMap<>();
+		Map rawMap = (Map) ((Map) JSON.parse(DataLoader.readJsonFile(new File("./data/humans/bodyPartStatus.json")))).get("bodyPartStatus");
+		result = load_loop(rawMap);
+		return result;
+	}
+	
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	public static Map<String, Status> generate_person_status_list() {
+		Map<String, Status> result = new HashMap<>();
+		Map rawMap = (Map) ((Map) JSON.parse(DataLoader.readJsonFile(new File("./data/humans/CharacterStatus.json")))).get("CharacterStatus");
+		result = load_loop(rawMap);
+		return result;
+	}
+	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public static Map<String, Status> generate_good_moods_list() {
+		Map<String, Status> result = new HashMap<>();
+		Map rawMap = (Map) ((Map) JSON.parse(DataLoader.readJsonFile(new File("./data/humans/GoodMood.json")))).get("GoodMoods");
+		result = load_loop(rawMap);
+		return result;
+	}
+	
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	public static Map<String, Status> generate_bad_moods_list() {
+		Map result = new HashMap<String, Object>();
+		result = (Map) ((Map) JSON.parse(DataLoader.readJsonFile(new File("./data/humans/BadMood.json")))).get("BadMoods");
+		return load_loop(result);
+	}
+	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public static Map<String,Status> load_loop(Map<String, Object> rawMap){
+		Map result = new HashMap<String, Status>();
+		for(String Key : rawMap.keySet()) {
+			Status status = new Status(
+					(String) ((Map)rawMap.get(Key)).get("name"), 
+					(String) ((Map)rawMap.get(Key)).get("detail"), 
+					"", 
+					(int) ((Map)rawMap.get(Key)).get("time"), 
+					(String) ((Map)rawMap.get(Key)).get("GoodOrBad")
+			);
+			result.put(((Map) rawMap.get(Key)).get("name").toString(), status);		
+		}
+		return result;
+	}
+	
+	public String get_GoodOrBadBoolean() {return GoodOrBad;}
 	
 	public String get_name() {return status_name;}
 	
@@ -64,5 +114,12 @@ public class Status {
 		this.status_reason = this.status_detail;
 		this.status_name = name;
 		this.time = t;
+	}
+
+	public static void main(String args[]) {
+		System.out.println(generate_body_status_list());
+		System.out.println(generate_person_status_list());
+		System.out.println(generate_bad_moods_list());
+		System.out.println(generate_good_moods_list());
 	}
 }
