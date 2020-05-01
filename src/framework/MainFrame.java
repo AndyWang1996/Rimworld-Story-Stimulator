@@ -65,9 +65,9 @@ public class MainFrame {
 	
 	protected ActionListener clickActionListener;
 	
-	public static EventList globaList = null;
+	public static EventList globaList;
 	
-	public static List<Human> characList = null;
+	public static List<Human> characList;
 	
 	private MainFrame() {
 		
@@ -187,9 +187,9 @@ public class MainFrame {
 		// TODO Display the story
 //		stroyTextArea.append("bad");
 		refresh_status(4, 3, 2, 1);
-		Dice.throw_a_dice("3d3+1d6");
-		Dice.throw_a_dice("1d100");
-		Dice.throw_a_dice("1d10+1d6+1d3");
+		Dice.throw_a_dice("3d3+1d6+1");
+//		Dice.throw_a_dice("1d100");
+//		Dice.throw_a_dice("1d10+1d6+1d3");
 		stroyTextArea.append("\n");
 		
 	}

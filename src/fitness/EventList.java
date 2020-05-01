@@ -1,5 +1,6 @@
 package fitness;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -11,19 +12,17 @@ import objects.Human;
 public class EventList {
 		
 	List<Event> EventList;
-	@SuppressWarnings("rawtypes")
-	Map globalDataMap;
+	Map<String, Object> globalDataMap = new HashMap<String, Object>();
 	JTextArea storyTextArea;
 	
 	public EventList(JTextArea stroyTextArea,List<Human> currentHumans) {
 		this.storyTextArea = stroyTextArea;
 		this.EventList = null;
-		this.globalDataMap = null;
+		this.globalDataMap.put("Defalut", "Defalut");
 	}
 
-	@SuppressWarnings("unchecked")
 	public void addIntoGlobalDataMap(String key, Object dataObject) {
-		globalDataMap.put(key, dataObject);
+		this.globalDataMap.put(key, dataObject);
 	}
 	
 	@SuppressWarnings({ "unchecked", "null" })

@@ -11,7 +11,7 @@ public class Dice {
 	static JTextArea area;
 	
 	public Dice(JTextArea storyArea) {
-		this.area = storyArea;
+		Dice.area = storyArea;
 	}
 	
 	public static int throw_a_dice(String command) {
@@ -29,18 +29,18 @@ public class Dice {
 			while(t.hasMoreElements()) {
 				result += multi_dice(t.nextToken());
 				if (t.hasMoreElements()) {
-					System.out.print("+"+"\n");
-					if (area != null) {area.append("(");}
+					System.out.print("+");
+					if (area != null) {area.append("+");}
 				}
 			}
 			System.out.print("="+result);
-			if (area != null) {area.append("(");}
+			if (area != null) {area.append("="+result);}
 			return result;	
 		}
 		else if (command.contains("d") && !command.contains("+")) {
 			result = multi_dice(command);
-			System.out.print("="+result+"\n");
-			if (area != null) {area.append("(");}
+			System.out.print("="+result);
+			if (area != null) {area.append("="+result);}
 			return result;
 		}
 		else{
@@ -65,23 +65,32 @@ public class Dice {
 	
 	private static int multi_dice(String command) {
 		int result = 0;
-		StringTokenizer t = new StringTokenizer(command,"d");
-		int ctr = Integer.parseInt(t.nextToken());
-		int range = Integer.parseInt(t.nextToken());
-		System.out.print("(");
-		if (area != null) {area.append("(");}
-		for (int i = 0; i < ctr; i++) {
-			int temp = random.nextInt(range)+1;
-			System.out.print(temp);
+		if (command.contains("d")) {
+			StringTokenizer t = new StringTokenizer(command,"d");
+			int ctr = Integer.parseInt(t.nextToken());
+			int range = Integer.parseInt(t.nextToken());
+			System.out.print("(");
 			if (area != null) {area.append("(");}
-			if (i+1<ctr) {
-				System.out.print("+");
-				if (area != null) {area.append("(");}
+			for (int i = 0; i < ctr; i++) {
+				int temp = random.nextInt(range)+1;
+				System.out.print(temp);
+				if (area != null) {area.append(Integer.toString(temp));}
+				if (i+1<ctr) {
+					System.out.print("+");
+					if (area != null) {area.append("+");}
+				}
+				result += temp;
 			}
-			result += temp;
+		}else {
+			System.out.print("(");
+			if (area != null) {area.append("(");}
+			int num = Integer.parseInt(command);
+			System.out.print(num);
+			if (area != null) {area.append(Integer.toString(num));}
+			result += num;
 		}
 		System.out.print(")");
-		if (area != null) {area.append("(");}
+		if (area != null) {area.append(")");}
 		return result;
 	}
 	

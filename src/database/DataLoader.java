@@ -5,12 +5,6 @@ import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.InputStreamReader;
 import java.io.Reader;
-import java.util.List;
-import java.util.Map;
-
-import com.alibaba.fastjson.*;
-
-import fitness.Dice;
 
 public class DataLoader {	 
 	    /**
@@ -39,16 +33,17 @@ public class DataLoader {
 	        }
 	    }
 	    
-	    @SuppressWarnings({ "rawtypes", "unchecked" })
+	    @SuppressWarnings({ })
 		public static void main(String args[]) {
-	    	File file1 = new File("./data/humans/firstNames.json");
-	    	File file2 = new File("./data/humans/lastNames.json");
-	    	Map jsoMap1 = (Map) JSON.parse(readJsonFile(file1));
-	    	Map jsoMap2 = (Map) JSON.parse(readJsonFile(file2));
-	    	List<String> l1 = (List<String>) jsoMap1.get("firstNames");
-	    	List<String> l2 = (List<String>) jsoMap2.get("lastNames");
-	    	System.out.print(l1.get(Dice.throw_a_dice("1d" + l1.size())));
-	    	System.out.print(l2.get(Dice.throw_a_dice("1d" + l2.size())));
+//	    	File file1 = new File("./data/humans/firstNames.json");
+//	    	File file2 = new File("./data/humans/lastNames.json");
+//	    	Map jsoMap1 = (Map) JSON.parse(readJsonFile(file1));
+//	    	Map jsoMap2 = (Map) JSON.parse(readJsonFile(file2));
+//	    	List<String> l1 = (List<String>) jsoMap1.get("firstNames");
+//	    	List<String> l2 = (List<String>) jsoMap2.get("lastNames");
+//	    	System.out.print(l1.get(Dice.throw_a_dice("1d" + l1.size())));
+//	    	System.out.print(l2.get(Dice.throw_a_dice("1d" + l2.size())));
+	    	
 	    }
 
 }

@@ -12,6 +12,7 @@ public class Human {
 	List<Organ> body;
 	List<Human> relation;
 	Map<String, Integer> skill;
+	int gender; //1=male 0=female
 	int HP;
 	int san;
 	int food;
@@ -31,6 +32,7 @@ public class Human {
 		this.HP = 10;
 		this.food = 100;
 		this.san = 100;
+		this.gender = Dice.throw_a_dice("1d2");
 		do_create_event(type);//随机一个小人出现的故事，决定小人的身体状态和其他相关属性
 		return c;
 				
