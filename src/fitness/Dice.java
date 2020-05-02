@@ -48,18 +48,19 @@ public class Dice {
 		}	
 	}
 	
-	public int successful_level_check(int check_point, int skill_point) {
+	public static int successful_level_check(int skill_point) {
+		int check_point = throw_a_dice("check");
 		if (check_point <= 5) {
-			return 3;
+			return 3;//大成功
 		}
-		else if (check_point>5 && check_point<=skill_point/2) {
-			return 2;
+		else if (check_point>5 && check_point<=skill_point) {
+			return 2;//成功
 		}
-		else if (check_point>skill_point/2 && check_point<=skill_point) {
-			return 1;
+		else if (check_point>skill_point && check_point<=99) {
+			return 1;//失败
 		}
 		else {
-			return 0;
+			return 0;//大失败
 		}
 	}
 	
