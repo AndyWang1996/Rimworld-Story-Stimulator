@@ -47,9 +47,6 @@ public class MainFrame {
 	private JLabel fOODJLabel;			//food supply
 	public static int FOOD = 0;
 	
-	private JLabel rESOURCEJLabel;		//general resource
-	public static int RESOURCE = 0;
-	
 	private JLabel tECHJLabel;    		//technology level
 	public static int TEC = 0;
 	
@@ -100,14 +97,11 @@ public class MainFrame {
 		resourceJPanel.setBorder(new TitledBorder("STATUS"));
 		fOODJLabel = new JLabel();
 		fOODJLabel.setText("FOOD: " + Integer.toString(FOOD));
-		rESOURCEJLabel = new JLabel();
-		rESOURCEJLabel.setText("RESOURCE: " + Integer.toString(RESOURCE));
 		tECHJLabel = new JLabel();
 		tECHJLabel.setText("TECH: " + Integer.toString(TEC));
 		uNITYJLabel = new JLabel();
 		uNITYJLabel.setText("UNITY: " + Integer.toString(UNITY));
 		resourceJPanel.add(fOODJLabel);
-		resourceJPanel.add(rESOURCEJLabel);
 		resourceJPanel.add(tECHJLabel);
 		resourceJPanel.add(uNITYJLabel);
 		resourceJPanel.setPreferredSize(new Dimension(700,70));
@@ -173,7 +167,7 @@ public class MainFrame {
 	private void Do_sth_normal() {
 		// TODO Display the story
 //		stroyTextArea.append("normal");
-		refresh_status(1, 2, 3, 4);
+		refresh_status(1, 3, 4);
 		stroyTextArea.append("\n");
 		
 	}
@@ -181,7 +175,7 @@ public class MainFrame {
 	private void Do_sth_bad() {
 		// TODO Display the story
 //		stroyTextArea.append("bad");
-		refresh_status(4, 3, 2, 1);
+		refresh_status(4, 3, 1);
 		Dice.throw_a_dice("3d3+1d6+1");
 //		Dice.throw_a_dice("1d100");
 //		Dice.throw_a_dice("1d10+1d6+1d3");
@@ -192,7 +186,7 @@ public class MainFrame {
 	private void Do_sth_good() {
 		// TODO Display the story
 //		stroyTextArea.append("good");
-		refresh_status(1, 4, 3, 2);
+		refresh_status(1, 4, 2);
 		stroyTextArea.append("\n");
 		
 	}
@@ -207,14 +201,12 @@ public class MainFrame {
 
 	}
 	
-	public void refresh_status(int fp, int rp, int tp, int up) {
+	public void refresh_status(int fp, int tp, int up) {
 		FOOD += fp;
-		RESOURCE += rp;
 		TEC += tp;
 		UNITY += up;
 		
 		fOODJLabel.setText("FOOD:" + Integer.toString(FOOD));
-		rESOURCEJLabel.setText("RESOURCE:" + Integer.toString(RESOURCE));
 		tECHJLabel.setText("TEC:" + Integer.toString(TEC));
 		uNITYJLabel.setText("UNITY:" + Integer.toString(UNITY));
 	}

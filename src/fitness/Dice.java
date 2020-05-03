@@ -5,6 +5,8 @@ import java.util.StringTokenizer;
 
 import javax.swing.JTextArea;
 
+import com.alibaba.fastjson.asm.Type;
+
 public class Dice {
 	
 	private static Random random = new Random(System.currentTimeMillis());
@@ -97,10 +99,16 @@ public class Dice {
 	
 	public static void main(String args[]) {
 //		Dice dice = new Dice();
-		for (int i = 0; i < 100; i++) {
-//			dice.throw_a_dice("100d100+10d10+12d34");
-			System.out.print("\n");
-		}
+//		for (int i = 0; i < 100; i++) {
+////			dice.throw_a_dice("100d100+10d10+12d34");
+//			System.out.print("\n");
+//		}
+		String aString = "0";
+		int a = 0;
+		String bString = ""+a+"";
+		System.out.println(bString);
+		System.out.println(aString.length());
+		System.out.println(bString == aString);
 		
 	}
 	

@@ -72,7 +72,6 @@ public class Human {
 		this.weapon = Weapon.getWeapon();
 	}
 	
-	@SuppressWarnings("unused")
 	public void display_this_guy() {
 		System.out.println();
 		System.out.print(this.firstname + " ");

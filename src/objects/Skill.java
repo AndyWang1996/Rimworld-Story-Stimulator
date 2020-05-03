@@ -64,7 +64,6 @@ public class Skill {
 			}
 			
 		}
-		skillMap.put(skillNameStrings[5], Dice.throw_a_dice("3d6")*5);
 		this.skillMap = skillMap;
 	}
 	
