@@ -167,8 +167,8 @@ public class MainFrame {
 	private void Do_sth_normal() {
 		// TODO Display the story
 //		stroyTextArea.append("normal");
-		refresh_status(1, 3, 4);
-		stroyTextArea.append("\n");
+//		refresh_status(1, 3, 4);
+//		stroyTextArea.append("\n");
 		
 	}
 
