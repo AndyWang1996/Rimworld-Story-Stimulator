@@ -56,6 +56,20 @@ public class Status {
 		return load_loop(result);
 	}
 	
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	public static Map<String, Status> generate_good_relations_list() {
+		Map result = new HashMap<String, Object>();
+		result = (Map) ((Map) JSON.parse(DataLoader.readJsonFile(new File("./data/humans/GoodRelation.json")))).get("GoodRelations");
+		return load_loop(result);
+	}
+	
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	public static Map<String, Status> generate_bad_relations_list() {
+		Map result = new HashMap<String, Object>();
+		result = (Map) ((Map) JSON.parse(DataLoader.readJsonFile(new File("./data/humans/BadRelation.json")))).get("BadRelations");
+		return load_loop(result);
+	}
+	
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public static Map<String,Status> load_loop(Map<String, Object> rawMap){
 		Map result = new HashMap<String, Status>();

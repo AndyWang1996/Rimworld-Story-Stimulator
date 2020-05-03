@@ -2,6 +2,7 @@ package objects;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -15,7 +16,7 @@ public class Human {
 	String firstname;
 	String lastname;
 	List<Organ> body = new ArrayList<>();
-	List<Human> relation = new ArrayList<>();
+	Map <Human, Status> relation = new HashMap<>();
 	Skill skill;
 	int gender; //1=male 0=female
 	int HP;
@@ -32,30 +33,42 @@ public class Human {
 	
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public Human create_character(String Occ) {
+		Human c = new Human();
     	File file1 = new File("./data/humans/firstNames.json");
     	File file2 = new File("./data/humans/lastNames.json");
     	Map jsoMap1 = (Map) JSON.parse(DataLoader.readJsonFile(file1));
     	Map jsoMap2 = (Map) JSON.parse(DataLoader.readJsonFile(file2));
     	List<String> l1 = (List<String>) jsoMap1.get("firstNames");
     	List<String> l2 = (List<String>) jsoMap2.get("lastNames");
-		this.firstname = l1.get(Dice.throw_a_dice("1d" + l1.size()));
-		this.lastname = l2.get(Dice.throw_a_dice("1d" + l2.size()));
-		this.HP = 10;
-		this.food = 100;
-		this.san = 100;
-		this.gender = Dice.throw_a_dice("1d2")-1;
-		this.body_status = Status.generate_person_status_list().get("Normal");
-		this.mental_status = Status.generate_good_moods_list().get("Normal");
-		create_relation();
+		c.firstname = l1.get(Dice.throw_a_dice("1d" + l1.size()));
+		c.lastname = l2.get(Dice.throw_a_dice("1d" + l2.size()));
+		c.HP = 10;
+		c.food = 100;
+		c.san = 100;
+		c.gender = Dice.throw_a_dice("1d2")-1;
+		c.body_status = Status.generate_person_status_list().get("Normal");
+		c.mental_status = Status.generate_good_moods_list().get("Normal");
 		create_skill(Occ);
 		create_body();
 		get_armed();
-		return this;			
+		return c;			
 	}
 
-	private void create_relation() {
+	public static void create_relation(List<Human> team) {
 		// TODO Auto-generated method stub
-		this.relation = new ArrayList<Human>();		
+		Map relationMap = Status.generate_good_relations_list();
+		System.out.println(relationMap);
+		Status defaultStatus = (Status) relationMap.get("Normal");
+		for(Human o : team) {
+			for(Human s : team) {
+				if (o != s) {
+					if (o.relation.get(s) == null) {
+						o.relation.put(s, defaultStatus);
+//						System.out.println(o.relation.get(s).get_detail().replace("{name1}", o.lastname).replace("{name2}", s.lastname));
+					}
+				}
+			}
+		}
 	}
 
 	private void create_skill(String Occ) {
@@ -82,11 +95,11 @@ public class Human {
 			System.out.println("status:" + part.status.status_name);
 			System.out.println("description:" + this.lastname + "'s " +  part.status.status_detail.replace("{name}", part.organ_name));
 		}
-		if (this.relation != null) {
-			for (Human part : this.relation) {
-				
-			}
-		}
+//		if (this.relation != null) {
+//			for (Human part : this.relation) {
+//				
+//			}
+//		}
 		System.out.println("Occupation: " + this.skill.occNameString);
 		System.out.println(this.skill.skillMap);
 		
@@ -98,9 +111,68 @@ public class Human {
 		System.out.println(this.mental_status.status_detail.replace("{name}", this.lastname));
 	}
 	
+	public String getFirstName() {
+		return this.firstname;
+	}
+	
+	public String getlastName() {
+		return this.lastname;
+	}
+	
+	public List<Organ> getBodyList() {
+		return this.body;
+	}
+	
+	public Map <Human, Status> getRelationMap() {
+		return this.relation;
+	}
+	
+	public Skill getSkill() {
+		return this.skill;
+	}
+	
+	public int getGender() {
+		return this.gender;
+	}
+	
+	public int getHP() {
+		return this.HP;
+	}
+	
+	public int getSan() {
+		return this.san;
+	}
+	
+	public int getFood() {
+		return this.food;
+	}
+	
+	public Status getBodyStatus() {
+		return this.body_status;
+	}
+	
+	public Status getMentalStatus() {
+		return this.mental_status;
+	}
+	
+	public Weapon getWeapon() {
+		return this.weapon;
+	}
+	
+	
 	public static void main(String Args[]) {
-		Human cHuman = new Human();
-		cHuman = cHuman.create_character(null);
-		cHuman.display_this_guy();
+		Human AllHuman = new Human();
+		Human aHuman = AllHuman.create_character(null);
+		Human bHuman = AllHuman.create_character(null);
+		Human cHuman = AllHuman.create_character(null);
+		System.out.println(aHuman);
+		System.out.println(bHuman);
+		System.out.println(cHuman);
+		List<Human> testHumans = new ArrayList<>();
+		testHumans.add(aHuman);
+		testHumans.add(bHuman);
+		testHumans.add(cHuman);
+		create_relation(testHumans);
+		System.out.println(aHuman.relation.get(bHuman).get_detail().replace("{name1}", aHuman.lastname).replace("{name2}", bHuman.lastname));
 	}
 }

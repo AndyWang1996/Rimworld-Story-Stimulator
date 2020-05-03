@@ -26,8 +26,8 @@ public class Weapon {
 	public static Weapon getWeapon() {
 		List<String> weaponList = new ArrayList<String>();
 		weaponList = (List<String>) ((Map) JSON.parse(DataLoader.readJsonFile(new File("./data/technology/guns_n_rifles.json")))).get("weapons");
-		System.out.println(weaponList);
-		return new Weapon(weaponList.get(Dice.throw_a_dice("1d"+weaponList.size())));
+//		System.out.println(weaponList);
+		return new Weapon(weaponList.get(Dice.throw_a_dice("1d"+weaponList.size())-1));
 	}
 	
 	public static void main(String args[]) {

@@ -18,6 +18,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.border.TitledBorder;
+import javax.xml.stream.events.StartDocument;
 
 import fitness.Dice;
 import fitness.EventList;
@@ -44,13 +45,13 @@ public class MainFrame {
 	
 	private JPanel resourceJPanel;
 	
-	private JLabel fOODJLabel;			//food supply
+	private static JLabel fOODJLabel;			//food supply
 	public static int FOOD = 0;
 	
-	private JLabel tECHJLabel;    		//technology level
-	public static int TEC = 0;
+	private static JLabel tECHJLabel;    		//process level
+	public static int PRO = 0;
 	
-	private JLabel uNITYJLabel;			//prople's confidence
+	private static JLabel uNITYJLabel;			//prople's confidence
 	public static int UNITY = 0;
 	
 	private JScrollPane clistJScrollPane;
@@ -98,7 +99,7 @@ public class MainFrame {
 		fOODJLabel = new JLabel();
 		fOODJLabel.setText("FOOD: " + Integer.toString(FOOD));
 		tECHJLabel = new JLabel();
-		tECHJLabel.setText("TECH: " + Integer.toString(TEC));
+		tECHJLabel.setText("PROCESS: " + Integer.toString(PRO));
 		uNITYJLabel = new JLabel();
 		uNITYJLabel.setText("UNITY: " + Integer.toString(UNITY));
 		resourceJPanel.add(fOODJLabel);
@@ -160,55 +161,65 @@ public class MainFrame {
 		
 		mainFrame.setVisible(true);
 		
-		start();
+		Start();
 		
 	}
 	
+	private void Start() {
+		// TODO Auto-generated method stub
+		globaList =  new EventList("normal");
+		//初始化一个情景，创建初始人物
+	}
+
 	private void Do_sth_normal() {
 		// TODO Display the story
-//		stroyTextArea.append("normal");
-//		refresh_status(1, 3, 4);
-//		stroyTextArea.append("\n");
+		globaList.swap_flag("normal");
+		globaList.excute_Eventlist(stroyTextArea, characList);
 		
 	}
 
 	private void Do_sth_bad() {
 		// TODO Display the story
-//		stroyTextArea.append("bad");
-		refresh_status(4, 3, 1);
-		Dice.throw_a_dice("3d3+1d6+1");
-//		Dice.throw_a_dice("1d100");
-//		Dice.throw_a_dice("1d10+1d6+1d3");
-		stroyTextArea.append("\n");
-		
+		globaList.swap_flag("bad");
+		globaList.excute_Eventlist(stroyTextArea, characList);
 	}
 
 	private void Do_sth_good() {
 		// TODO Display the story
-//		stroyTextArea.append("good");
-		refresh_status(1, 4, 2);
-		stroyTextArea.append("\n");
-		
+		globaList.swap_flag("good");
+		globaList.excute_Eventlist(stroyTextArea, characList);	
 	}
 	
-	private void start() {
-		//creat dice
-		new Dice(stroyTextArea); 
+	public static void refresh_status(int fp, int pp, int up) {
+		if (fp!=0) {
+			FOOD += fp;
+			fOODJLabel.setText("FOOD:" + Integer.toString(FOOD));
+			stroyTextArea.append("The food value has changed:" + fp + "\n");
+			
+		}
 		
-		globaList = new EventList(stroyTextArea, characList);
+		if (pp!=0) {
+			PRO += pp;
+			tECHJLabel.setText("PROCESS:" + Integer.toString(PRO));
+			stroyTextArea.append("The process value has changed:" + pp + "\n");
+			
+		}
 		
-		//load files
-
+		if (fp!=0) {
+			UNITY += up;
+			uNITYJLabel.setText("UNITY:" + Integer.toString(UNITY));
+			stroyTextArea.append("The unity value has changed:" + up + "\n");
+			
+		}
 	}
 	
-	public void refresh_status(int fp, int tp, int up) {
-		FOOD += fp;
-		TEC += tp;
-		UNITY += up;
-		
-		fOODJLabel.setText("FOOD:" + Integer.toString(FOOD));
-		tECHJLabel.setText("TEC:" + Integer.toString(TEC));
-		uNITYJLabel.setText("UNITY:" + Integer.toString(UNITY));
+	public void pause(long num) {
+		try {
+			Thread.sleep(num);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	public static JTextArea geTextArea() {
