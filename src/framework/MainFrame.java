@@ -8,8 +8,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -37,7 +40,6 @@ public class MainFrame {
 	public static JTextArea stroyTextArea;
 			
 	private JPanel characterPanel;
-	private JList<Human> characterList;
 		
 	private JPanel buttonPanel;	
 	private JButton goodButton;
@@ -61,7 +63,11 @@ public class MainFrame {
 	
 	public static EventList globaList;
 	
-	public static List<Human> characList;
+	public static List<Human> characList = new ArrayList<Human>();
+	
+	public static DefaultListModel<String> nameList;
+	
+	public static JList<String> displayList;
 	
 	private MainFrame() {
 		
@@ -110,10 +116,11 @@ public class MainFrame {
 		resourceJPanel.setVisible(true);
 		
 		characterPanel = new JPanel();
-		characterList = new JList<Human>();
+		nameList = new DefaultListModel<>();
+		displayList = new JList<>(nameList);
 		
 		characterPanel.setLayout(new GridLayout(1,1));
-		clistJScrollPane = new JScrollPane(characterList);
+		clistJScrollPane = new JScrollPane(displayList);
 		characterPanel.add(clistJScrollPane);
 		characterPanel.setBorder(new TitledBorder("Characters"));
 		characterPanel.setVisible(true);
@@ -144,13 +151,28 @@ public class MainFrame {
 			public void actionPerformed(ActionEvent e) {
 //				System.out.print(e + "\n");
 				if (e.getActionCommand().equals("GOOD")) {
-					Do_sth_good();
+					try {
+						Do_sth_good();
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 				}
 				else if (e.getActionCommand().equals("BAD")) {
-					Do_sth_bad();
+					try {
+						Do_sth_bad();
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 				}
 				else if (e.getActionCommand().equals("GO ON")) {
-					Do_sth_normal();
+					try {
+						Do_sth_normal();
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 				}
 			}
 
@@ -168,27 +190,32 @@ public class MainFrame {
 	
 	private void Start() {
 		// TODO Auto-generated method stub
+		Human firstHuman = new Human();
+		firstHuman = firstHuman.create_character("detective");
+		firstHuman.display_this_guy();
+		characList.add(firstHuman);
+		nameList.addElement(firstHuman.get_FullName());
 		globaList =  new EventList("normal");
 		//初始化一个情景，创建初始人物
 	}
 
-	private void Do_sth_normal() {
+	private void Do_sth_normal() throws IOException {
 		// TODO Display the story
-//		globaList.swap_flag("normal");
-//		globaList.excute_Eventlist(stroyTextArea, characList);
-//		refresh_status();
+		globaList.swap_flag("normal");
+		globaList.excute_Eventlist(stroyTextArea, characList);
+		refresh_status();
 //		Weapon.test();
 //		fOODJLabel.setText("FOOD:" + Integer.toString(FOOD));	
 	}
 
-	private void Do_sth_bad() {
+	private void Do_sth_bad() throws IOException {
 		// TODO Display the story
 		globaList.swap_flag("bad");
 		globaList.excute_Eventlist(stroyTextArea, characList);
 		refresh_status();
 	}
 
-	private void Do_sth_good() {
+	private void Do_sth_good() throws IOException {
 		// TODO Display the story
 		globaList.swap_flag("good");
 		globaList.excute_Eventlist(stroyTextArea, characList);	

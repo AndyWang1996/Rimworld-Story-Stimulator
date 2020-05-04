@@ -37,15 +37,20 @@ public class Scenes {
 	public void settle_Event() throws IOException {
 		if (events.get("WEAT") != null) {
 			outpuTextArea.append((String) events.get("WEAT"));
+			outpuTextArea.append("\n");
 		}
 		if (events.get("AGRI") != null) {
 			Human objHuman = selectObject();
+			System.out.println(objHuman.get_FullName());
 			Map<String, Object> eventMap = (Map<String, java.lang.Object>) events.get("AGRI");
+			System.out.println(eventMap);
 			String name = objHuman.getFirstName();
 			String target = (String) eventMap.get("target");
+//			objHuman.display_this_guy();
+			int level = Dice.successful_level_check(objHuman.getSkill().getSkillMap().get("Agriculture"));
 			String output = ((List<String>) eventMap.get("eventdescription")).get((Dice.throw_a_dice("1d2"))-1)
 					+ "\n"
-					+ eventMap.get(Integer.toString(Dice.successful_level_check(objHuman.getSkill().getSkillMap().get("Agriculture"))));
+					+ ((List<String>)((Map)eventMap.get(Integer.toString(level))).get("resultdescription")).get(Dice.throw_a_dice("1d3")-1);
 			
 			output = output.replace("{name}", name);
 			output = output.replace("{food}", target);
@@ -54,11 +59,12 @@ public class Scenes {
 			outpuTextArea.append(output);
 			outpuTextArea.append("\n");
 			
-			String type = (String) eventMap.get("type");
-			String gob = (String) eventMap.get("goodorbad");
-			String influence = (String) eventMap.get("influence");
-			String motivate = (String) eventMap.get("motivate");
+			String type = (String) ((Map)eventMap.get(Integer.toString(level))).get("type");
+			String gob = (String) ((Map)eventMap.get(Integer.toString(level))).get("goodorbad");
+			String influence = (String) ((Map)eventMap.get(Integer.toString(level))).get("influence");
+			String motivate = (String) ((Map)eventMap.get(Integer.toString(level))).get("motivate");
 			
+			System.out.println(gob + "AGRI");
 			check_value_change(objHuman, gob, type, influence);
 			if (motivate != null) {add_motivation_list(objHuman, motivate);}
 		}
@@ -81,31 +87,40 @@ public class Scenes {
 			String influence = (String) ((Map)eventMap.get(Integer.toString(r))).get("influence");
 			String motivate = (String) ((Map)eventMap.get(Integer.toString(r))).get("motivate");
 			
+			System.out.println(gob + "TRAV");
 			check_value_change(objHuman, gob, type, influence);
 			if (motivate != null) {add_motivation_list(objHuman, motivate);}
 		}
 		if (events.get("NEWM") != null) {
 			Human objHuman = selectObject();
-			Map<String, Object> eventMap = (Map<String, java.lang.Object>) events.get("NEWM");
-			String name = objHuman.getFirstName();
-			String target = (String) eventMap.get("target");
-			String output = ((List<String>) eventMap.get("eventdescription")).get((Dice.throw_a_dice("1d2"))-1)
-					+ "\n"
-					+ eventMap.get(Integer.toString(Dice.successful_level_check(objHuman.getSkill().getSkillMap().get("Agriculture"))));
+			Human subHuman = new Human();
+			subHuman = subHuman.create_character(null);
 			
-			output = output.replace("{name}", name);
-			output = output.replace("{food}", target);
-			output = output.replace("{animal}", target);
+			Map<String, Object> eventMap = (Map<String, java.lang.Object>) events.get("NEWM");
+			String name1 = objHuman.getFirstName();
+			String name2 = subHuman.getFirstName();
+
+			String output = (String) eventMap.get("description");
+			
+			output = output.replace("{name1}", name1);
+			output = output.replace("{name2}", name2);
 			
 			outpuTextArea.append(output);
 			outpuTextArea.append("\n");
 			
-			String type = (String) eventMap.get("type");
-			String gob = (String) eventMap.get("goodorbad");
-			String influence = (String) eventMap.get("influence");
+			String type = (String) eventMap.get("panalty");
+			String gob = "bad";
+			String influence = (String) eventMap.get("value");
 			String motivate = (String) eventMap.get("motivate");
 			
-			check_value_change(objHuman, gob, type, influence);
+			System.out.println(gob + "NEWM");
+			check_value_change(subHuman, gob, type, influence);
+			
+			outpuTextArea.append(subHuman.get_FullName() + " is a " + subHuman.getSkill().getOccString());
+			outpuTextArea.append("\n");
+			
+			MainFrame.characList.add(subHuman);
+			MainFrame.nameList.addElement(subHuman.get_FullName());
 			if (motivate != null) {add_motivation_list(objHuman, motivate);}
 		}
 	}
@@ -118,19 +133,24 @@ public class Scenes {
 
 	private void check_value_change(Human human, String gob, String type, String influence) {
 		// TODO Auto-generated method stub
-		if (type == "food") {
+		if (type.contains("food")) {
+//			System.out.println("++++++++");
 			if (gob == "good") {
 				MainFrame.FOOD += Dice.throw_a_dice(influence);
 			}else {
 				MainFrame.FOOD -= Dice.throw_a_dice(influence);
 			}
-		}else if (type == "INT") {
+		}
+		else if (type.contains("INT")) {
+//			System.out.println("--------");
 			if (gob == "good") {
 				MainFrame.PRO += Dice.throw_a_dice(influence);
 			}else {
 				MainFrame.PRO -= Dice.throw_a_dice(influence);
 			}
-		}else if (type == "HP") {
+		}
+		else if (type.contains("HP")) {
+//			System.out.println("00000000");
 			if (gob == "good") {
 				human.HP += Dice.throw_a_dice(influence);
 				if (human.HP > 10) {
@@ -140,7 +160,7 @@ public class Scenes {
 				human.HP -= Dice.throw_a_dice(influence);
 			}
 		}
-		else if (type == "unity") {
+		else if (type.contains("unity")) {
 			if (gob == "good") {
 				MainFrame.UNITY += Dice.throw_a_dice(influence);
 				change_mood(human, 1);

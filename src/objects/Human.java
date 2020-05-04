@@ -48,9 +48,9 @@ public class Human {
 		c.gender = Dice.throw_a_dice("1d2")-1;
 		c.body_status = Status.generate_person_status_list().get("Normal");
 		c.mental_status = Status.generate_good_moods_list().get("Normal");
-		create_skill(Occ);
-		create_body();
-		get_armed();
+		create_skill(Occ, c);
+		create_body(c);
+		get_armed(c);
 		return c;			
 	}
 
@@ -71,18 +71,20 @@ public class Human {
 		}
 	}
 
-	private void create_skill(String Occ) {
+	private void create_skill(String Occ, Human c) {
 		// TODO Auto-generated method stub
-		this.skill = new Skill(Occ);
+		System.out.println("mark");
+		c.skill = new Skill(Occ);
 	}
 
-	private void create_body() {
+	private void create_body(Human c) {
 		// TODO Auto-generated method stub
-		this.body = Organ.create_flesh();
+		System.out.println("mark");
+		c.body = Organ.create_flesh();
 	}
 	
-	private void get_armed() {
-		this.weapon = Weapon.getWeapon();
+	private void get_armed(Human c) {
+		c.weapon = Weapon.getWeapon();
 	}
 	
 	public void display_this_guy() {
@@ -159,6 +161,9 @@ public class Human {
 		return this.weapon;
 	}
 	
+	public String get_FullName() {
+		return this.firstname + " " + this.lastname;
+	}
 	
 	public static void main(String Args[]) {
 		Human AllHuman = new Human();
@@ -173,6 +178,6 @@ public class Human {
 		testHumans.add(bHuman);
 		testHumans.add(cHuman);
 		create_relation(testHumans);
-		System.out.println(aHuman.relation.get(bHuman).get_detail().replace("{name1}", aHuman.lastname).replace("{name2}", bHuman.lastname));
+		System.out.println(aHuman.relation.get(bHuman).get_detail().replace("{name1}", aHuman.get_FullName()).replace("{name2}", bHuman.get_FullName()));
 	}
 }

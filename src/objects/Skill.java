@@ -52,6 +52,8 @@ public class Skill {
 		}
 		else {
 			List<String> skList = (List<String>) occMap.get(Occupation);
+			this.occNameString = Occupation;
+			System.out.println(skList);
 			for(int i = 0; i!=5; i++) {
 				if (skList.get(i).contains("d")) {
 					int temp = Dice.throw_a_dice(skList.get(i));

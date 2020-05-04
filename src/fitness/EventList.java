@@ -1,6 +1,7 @@
 package fitness;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -53,9 +54,11 @@ public class EventList {
 		this.fLAGString = flag;
 	}
 	
-	public void excute_Eventlist(JTextArea stroyTextArea,List<Human> currentHumans) {
+	public void excute_Eventlist(JTextArea stroyTextArea,List<Human> currentHumans) throws IOException {
 		build_list();
-		
+		eventScene = new Scenes(currentHumans, fLAGString, eventList, stroyTextArea);
+		eventScene.settle_Event();
+		eventList.clear();
 	}
 
 	private void build_list() {
@@ -64,9 +67,11 @@ public class EventList {
 		addAricultureEvent();
 		addTravelEvent();
 		if (MainFrame.characList.size()<3) {
+			System.out.println("newMan1");
 			addNewManEvent();
 		}
 		else if (Dice.throw_a_dice("1d100")<=10) {
+			System.out.println("newMan2");
 			addNewManEvent();
 		}
 		if (Dice.throw_a_dice("1d100")<=20) {
