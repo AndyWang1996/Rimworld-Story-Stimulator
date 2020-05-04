@@ -1,0 +1,27 @@
+The team met 2 hostile strangers.
+Catherine fired at an enemy named Benjamin
+Catherine used 9mm Smith & Wesson 459 semiautomatic to fire on Benjamin and the bullet accurately hit the target.
+Benjamin Bell:7
+Melanie fired at Catherine
+Melanie used .223 Bushmaster assault rifle to fire at Catherine, but the bullet failed to hit the target.
+Catherine Cole:10
+Benjamin fired at Catherine
+Benjamin used Sig Sauer p226 to fire on Catherine and the bullet accurately hit the target.
+Catherine Cole:5
+After a brief round of firefight, the two sides decided to retreat.
+The team met 1 hostile strangers.
+Catherine fired at an enemy named Ivan
+Catherine used 9mm Smith & Wesson 459 semiautomatic to fire at Ivan, but the bullet failed to hit the target.
+Ivan Hart:10
+Ivan fired at Catherine
+Ivan used 9mm Glock 19 to fire at Catherine, but the bullet failed to hit the target.
+Catherine Cole:5
+After a brief round of firefight, the two sides decided to retreat.
+The team met 2 hostile strangers.
+Catherine fired at an enemy named Andrea
+Catherine used 9mm Smith & Wesson 459 semiautomatic to fire on Andrea and the bullet accurately hit the target.
+Andrea Carter:8
+Andrea fired at Catherine
+Andrea shot a deadly shot at Catherine, killing the latter directly.
+Catherine Cole:-5
+Catherine Cole was killed.

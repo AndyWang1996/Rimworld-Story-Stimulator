@@ -46,7 +46,7 @@ public class Dice {
 			return result;
 		}
 		else{
-			return result;
+			return Integer.parseInt(command);
 		}	
 	}
 	
@@ -103,13 +103,14 @@ public class Dice {
 ////			dice.throw_a_dice("100d100+10d10+12d34");
 //			System.out.print("\n");
 //		}
-		String aString = "0";
-		int a = 0;
-		String bString = ""+a+"";
-		System.out.println(bString);
-		System.out.println(aString.length());
-		System.out.println(bString == aString);
-		
+//		String aString = "0";
+//		int a = 0;
+//		String bString = ""+a+"";
+//		System.out.println(bString);
+//		System.out.println(aString.length());
+		Dice.throw_a_dice("10");
+		System.out.println(Dice.throw_a_dice("10"));
+//		
 	}
 	
 }

@@ -192,7 +192,7 @@ public class MainFrame {
 		// TODO Auto-generated method stub
 		Human firstHuman = new Human();
 		firstHuman = firstHuman.create_character("detective");
-		firstHuman.display_this_guy();
+//		firstHuman.display_this_guy();
 		characList.add(firstHuman);
 		nameList.addElement(firstHuman.get_FullName());
 		globaList =  new EventList("normal");

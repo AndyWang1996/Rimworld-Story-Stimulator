@@ -78,9 +78,9 @@ public class Skill {
 	}
 	
 	public static void main(String args[]) {
-		Skill skill = new Skill(null);
-		System.out.println();
-		System.out.println(skill.getOccString());
-		System.out.println(skill.getSkillMap());
+//		Skill skill = new Skill(null);
+		System.out.println(Dice.throw_a_dice("0"));
+//		System.out.println(skill.getOccString());
+//		System.out.println(skill.getSkillMap());
 	}
 }

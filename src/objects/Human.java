@@ -40,8 +40,8 @@ public class Human {
     	Map jsoMap2 = (Map) JSON.parse(DataLoader.readJsonFile(file2));
     	List<String> l1 = (List<String>) jsoMap1.get("firstNames");
     	List<String> l2 = (List<String>) jsoMap2.get("lastNames");
-		c.firstname = l1.get(Dice.throw_a_dice("1d" + l1.size()));
-		c.lastname = l2.get(Dice.throw_a_dice("1d" + l2.size()));
+		c.firstname = l1.get(Dice.throw_a_dice("1d" + (l1.size()-1)));
+		c.lastname = l2.get(Dice.throw_a_dice("1d" + (l2.size()-1)));
 		c.HP = 10;
 		c.food = 100;
 		c.san = 100;

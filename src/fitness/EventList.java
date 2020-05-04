@@ -26,28 +26,28 @@ public class EventList {
 		this.fLAGString = flag;
 		
 		this.dataMap.put("AGRI", (Map) JSON.parse(DataLoader.readJsonFile(new File("./data/event/Agri_event.json"))));
-		System.out.println("x");
+		System.out.println("¡Ì");
 		
 		this.dataMap.put("BATT", (Map) JSON.parse(DataLoader.readJsonFile(new File("./data/event/Battle_event.json"))));
-		System.out.println("x");
+		System.out.println("¡Ì");
 		
 		this.dataMap.put("INT", (Map) JSON.parse(DataLoader.readJsonFile(new File("./data/event/Int_event.json"))));
-		System.out.println("x");
+		System.out.println("¡Ì");
 		
 		this.dataMap.put("MEDI", (Map) JSON.parse(DataLoader.readJsonFile(new File("./data/event/Medic_event.json"))));
 		System.out.println("x");
 		
 		this.dataMap.put("TRAV", (Map) JSON.parse(DataLoader.readJsonFile(new File("./data/event/Travel_event.json"))));
-		System.out.println("x");
+		System.out.println("¡Ì");
 		
 		this.dataMap.put("SOCI", (Map) JSON.parse(DataLoader.readJsonFile(new File("./data/event/Social_event.json"))));
 		System.out.println("x");
 		
 		this.dataMap.put("NEWM", (Map) JSON.parse(DataLoader.readJsonFile(new File("./data/event/Newman_event.json"))));
-		System.out.println("x");
+		System.out.println("¡Ì");
 		
 		this.dataMap.put("WEAT", (Map) JSON.parse(DataLoader.readJsonFile(new File("./data/event/Weather_event.json"))));
-		System.out.println("x");
+		System.out.println("¡Ì");
 	}
 	
 	public void swap_flag(String flag) {
@@ -63,7 +63,9 @@ public class EventList {
 
 	private void build_list() {
 		// TODO Auto-generated method stub
+//		addBattleEvent();
 		addWeatherEvent();
+		addINTEvent();
 		addAricultureEvent();
 		addTravelEvent();
 		if (MainFrame.characList.size()<3) {
@@ -79,6 +81,15 @@ public class EventList {
 		}
 	}
 
+
+	@SuppressWarnings("rawtypes")
+	private void addINTEvent() {
+		// TODO Auto-generated method stub
+		Map intMap;
+		intMap = (Map) ((Map) dataMap.get("INT")).get("research");
+		eventList.put("INT", intMap);
+		System.out.println(intMap);
+	}
 
 	@SuppressWarnings("rawtypes")
 	private void addAricultureEvent() {
@@ -135,7 +146,8 @@ public class EventList {
 //		eventList.addTravelEvent();
 //		eventList.addBattleEvent();
 //		eventList.addAricultureEvent();
-		System.out.println(eventList.eventList.get("AGRI"));
+		eventList.addINTEvent();
+//		System.out.println(eventList.eventList.get("AGRI"));
 	}
 	
 }
