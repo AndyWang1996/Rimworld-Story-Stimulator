@@ -34,7 +34,7 @@ public class Skill {
 		if (Occupation == null) {
 			Object[] occKeys = occMap.keySet().toArray();
 			int up = occKeys.length;
-			String occtemp = (String) occKeys[Dice.throw_a_dice("1d"+up)];
+			String occtemp = (String) occKeys[Dice.throw_a_dice("1d"+up)-1];
 			this.occNameString = occtemp;
 			List<String> skList = (List<String>) occMap.get(occtemp);
 			for(int i = 0; i!=5; i++) {

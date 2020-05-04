@@ -15,8 +15,8 @@ public class Human {
 	
 	String firstname;
 	String lastname;
-	List<Organ> body = new ArrayList<>();
-	Map <Human, Status> relation = new HashMap<>();
+	public List<Organ> body = new ArrayList<>();
+	public Map <Human, Status> relation = new HashMap<>();
 	Skill skill;
 	int gender; //1=male 0=female
 	public int HP;

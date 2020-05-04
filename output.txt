@@ -1,123 +1,55 @@
-The team met 2 hostile strangers.
-Nicholas fired at an enemy named Javier
-Nicholas used .22-caliber Walther P22 semiautomatic to fire on Javier and the bullet accurately hit the target.
-Javier's leg is bleeding, looks bad.
-Javier Martinez:6
-Javier fired at Nicholas
-Javier used Intratec MAC-11 to fire at Nicholas, but the bullet failed to hit the target.
-Nicholas's lower leg is bleeding, looks bad.
-Nicholas Lopez:10
-Peyton fired at Nicholas
-Peyton used Intratec DC-9 to fire at Nicholas, but the bullet failed to hit the target.
-Nicholas's feet is bleeding, looks bad.
-Nicholas Lopez:10
-After a brief round of firefight, the two sides decided to retreat.
-The team met 1 hostile strangers.
-Nicholas fired at an enemy named Kaylee
-Nicholas used .22-caliber Walther P22 semiautomatic to fire at Kaylee, but the bullet failed to hit the target.
-Kaylee's buttocks is bleeding, looks bad.
-Kaylee Rivera:10
-Kaylee fired at Nicholas
-Kaylee used 7.62mm AK-47 to fire on Nicholas and the bullet accurately hit the target.
-Nicholas's lower leg is bleeding, looks bad.
-Nicholas Lopez:5
-After a brief round of firefight, the two sides decided to retreat.
-The team met 1 hostile strangers.
-Nicholas fired at an enemy named Alana
-Nicholas used .22-caliber Walther P22 semiautomatic to fire at Alana, but the bullet failed to hit the target.
-Alana's back is bleeding, looks bad.
-Alana Phillips:10
-Alana fired at Nicholas
-Alana used .22-caliber Double Deuce Buddie two-shot to fire on Nicholas and the bullet accurately hit the target.
-Nicholas's shoulder is bleeding, looks bad.
-Nicholas Lopez:3
-After a brief round of firefight, the two sides decided to retreat.
-The team met 1 hostile strangers.
-Nicholas fired at an enemy named Lucy
-Nicholas used .22-caliber Walther P22 semiautomatic to fire on Lucy and the bullet accurately hit the target.
-Lucy's nose is bleeding, looks bad.
-Lucy Walker:7
-Lucy fired at Nicholas
-Lucy used 9mm Springfield Armory XDM semiautomatic to fire at Nicholas, but the bullet failed to hit the target.
-Nicholas's lower leg is bleeding, looks bad.
-Nicholas Lopez:3
-After a brief round of firefight, the two sides decided to retreat.
-The team met 1 hostile strangers.
-Nicholas fired at an enemy named Kendall
-Nicholas used .22-caliber Walther P22 semiautomatic to fire on Kendall and the bullet accurately hit the target.
-Kendall's arm is bleeding, looks bad.
-Kendall Webb:7
-Kendall fired at Nicholas
-Kendall used 10mm Glock to fire at Nicholas, but the bullet failed to hit the target.
-Nicholas's waist is bleeding, looks bad.
-Nicholas Lopez:3
-After a brief round of firefight, the two sides decided to retreat.
-The team met 1 hostile strangers.
-Nicholas fired at an enemy named Alexandria
-Nicholas used .22-caliber Walther P22 semiautomatic to fire on Alexandria and the bullet accurately hit the target.
-Alexandria's forehead is bleeding, looks bad.
-Alexandria Russell:6
-Alexandria fired at Nicholas
-Alexandria used .357 Ruger Blackhawk revolver to fire at Nicholas, but the bullet failed to hit the target.
-Nicholas's hand is bleeding, looks bad.
-Nicholas Lopez:3
-After a brief round of firefight, the two sides decided to retreat.
-The team met 1 hostile strangers.
-Nicholas fired at an enemy named Amber
-Nicholas used .22-caliber Walther P22 semiautomatic to fire on Amber and the bullet accurately hit the target.
-Amber's leg is bleeding, looks bad.
-Amber Chavez:7
-Amber fired at Nicholas
-Amber used .22-caliber Walther P22 semiautomatic to fire at Nicholas, but the bullet failed to hit the target.
-Nicholas's forearm is bleeding, looks bad.
-Nicholas Lopez:3
-After a brief round of firefight, the two sides decided to retreat.
-The team met 2 hostile strangers.
-Nicholas fired at an enemy named Karina
-Nicholas used .22-caliber Walther P22 semiautomatic to fire at Karina, but the bullet failed to hit the target.
-Karina's arm is bleeding, looks bad.
-Karina Morris:10
-Jordyn fired at Nicholas
-Jordyn used 9mm Glock 19 to fire at Nicholas, but the bullet failed to hit the target.
-Nicholas's forearm is bleeding, looks bad.
-Nicholas Lopez:3
-Karina fired at Nicholas
-Karina used 9mm Hi-Point 995 carbine rifle to fire at Nicholas, but the bullet failed to hit the target.
-Nicholas's cheek is bleeding, looks bad.
-Nicholas Lopez:3
-After a brief round of firefight, the two sides decided to retreat.
-The team met 2 hostile strangers.
-Nicholas fired at an enemy named Bailey
-Nicholas used .22-caliber Walther P22 semiautomatic to fire on Bailey and the bullet accurately hit the target.
-Bailey's hand is bleeding, looks bad.
-Bailey Romero:9
-Bailey fired at Nicholas
-Bailey used .44 Magnum Ruger to fire at Nicholas, but the bullet failed to hit the target.
-Nicholas's shoulder is bleeding, looks bad.
-Nicholas Lopez:3
-Adriana fired at Nicholas
-Adriana used 9mm Ruger P89 to fire on Nicholas and the bullet accurately hit the target.
-Nicholas's hand is bleeding, looks bad.
-Nicholas Lopez:2
-After a brief round of firefight, the two sides decided to retreat.
-The team met 1 hostile strangers.
-Nicholas fired at an enemy named Jordan
-Nicholas used .22-caliber Walther P22 semiautomatic to fire on Jordan and the bullet accurately hit the target.
-Jordan's upper arm is bleeding, looks bad.
-Jordan Roberts:8
-Jordan fired at Nicholas
-Jordan used .223 Bushmaster XM15-E2S rifle to fire on Nicholas and the bullet accurately hit the target.
-Nicholas's breast is bleeding, looks bad.
-Nicholas Lopez:1
-After a brief round of firefight, the two sides decided to retreat.
-The team met 3 hostile strangers.
-Nicholas fired at an enemy named Brayden
-Nicholas used .22-caliber Walther P22 semiautomatic to fire on Brayden and the bullet accurately hit the target.
-Brayden's hand is bleeding, looks bad.
-Brayden Rose:6
-Jacob fired at Nicholas
-Jacob used WASR-10 Century Arms rifle to fire on Nicholas and the bullet accurately hit the target.
-Nicholas's lower leg is bleeding, looks bad.
-Nicholas Lopez:-4
-Nicholas Lopez was killed.
-There are no more people in the team that can act normally. The story ends here.
+{name} is an explorer from rimworld. who decided to explore forward and find a way to the "civilized world"
+Today's weather is: Cloudy.
+Jordan decided to calm down and think about how to return to the civilized world.
+Jordan came up with a good idea, which brought everyone closer to the civilized world.
+Jordan is hanging around in the nearby woods, trying to find something to eat.
+After Jordan 's efforts, some navy bean was harvested.
+The team moved forward, they arrived a town named Honefoss,
+Jordan and helped the townspeople hunt a monster, and the townspeople rewarded them with food.
+Jordan met a traveler Jazmin. After a brief conversation, they decided to go together.
+Jazmin Ramirez is a english language teacher
+Today's weather is: Rain.
+Jordan decided to calm down and think about how to return to the civilized world.
+Jordan came up with a good idea, which brought everyone closer to the civilized world.
+Jazmin set off with a weapon, ready to find prey that can be captured.
+Jazmin successfully caught a woodchuck and returned with it.
+The team moved forward, they arrived a town named As,
+After communicating with the townspeople, Jordan got a lot of information about the nearby civilized world. This allows Jordan to plan for the next route.
+Jordan met a traveler Lucas. After a brief conversation, they decided to go together.
+Lucas Reynolds is a real estate sales agent
+Today's weather is: Clear.
+Jazmin decided to calm down and think about how to return to the civilized world.
+Jazmin came up with a good idea, which brought everyone closer to the civilized world.
+Jazmin is hanging around in the nearby woods, trying to find something to eat.
+Jazmin was lazy on the way, sleeping secretly on the grass for a long time, and finally found nothing.
+The team moved forward, they arrived a town named Drobak,
+Jazmin somehow quarreled with the villagers in the town, and finally there was a fight, with some minor injuries
+Jazmin looks uncomfortable, and is suffering from pain.
+Jazmin's back is bleeding, looks bad.
+Jordan successfully treated Jazmin, Jazmin looks better
+Jazmin Ramirez HP:10
+After that,Jazmin was saved by Jordan, so Jazmin has always been grateful.
+Lucas wants to give first aid to Jazmin, but the treatment for Lucas has not worked.
+Jazmin looks uncomfortable, and is suffering from pain.
+Jazmin's arm is bleeding, looks bad.
+After that,Jazmin and Lucas used to be very close, but at this time they are like strangers.
+Today's weather is: Drizzle.
+Lucas decided to calm down and think about how to return to the civilized world.
+Lucas thought of a brilliant idea, which took everyone a big step forward.
+Jordan search around with a rifle, trying to hunt some preys.
+Jordan found a lizard. But Jordan didn't hit the target when shooting, and lizard escaped.
+Jordan started a fun conversation with Lucas, and the content of the talk was the Lucas's brilliant Idea
+The subject of the conversation was heavy, and they failed to make progress.
+Lucas is very frustrated, it seems to have no spirit.
+Jordan 's mood is calm, nothing special.
+After that,Jordan hates Lucas and seeing Lucas makes Jordan sick.
+The team moved forward, they passed a sea shore,
+Jordan looked into the distance and found traces of buildings in the distance. This brings them one step closer to the civilized world.
+Jordan successfully treated Jazmin, Jazmin looks better
+Jazmin Ramirez HP:10
+After that,Jazmin was saved by Jordan, so Jazmin has always been grateful.
+Lucas wants to give first aid to Jazmin, but the treatment for Lucas has not worked.
+Jazmin looks uncomfortable, and is suffering from pain.
+Jazmin's nose is bleeding, looks bad.
+After that,Jazmin doesn't like Lucas, this person is around to make Jazmin unpleasant.
+Finally, everyone saw the "civilized world" that showed its outline in the distance. Everyone experienced a lot along the way, and they successfully reached their destination. This is the end of the story.

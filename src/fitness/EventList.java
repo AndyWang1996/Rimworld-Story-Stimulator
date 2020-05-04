@@ -41,7 +41,7 @@ public class EventList {
 		System.out.println("¡Ì");
 		
 		this.dataMap.put("SOCI", (Map) JSON.parse(DataLoader.readJsonFile(new File("./data/event/Social_event.json"))));
-		System.out.println("x");
+		System.out.println("¡Ì");
 		
 		this.dataMap.put("NEWM", (Map) JSON.parse(DataLoader.readJsonFile(new File("./data/event/Newman_event.json"))));
 		System.out.println("¡Ì");
@@ -64,6 +64,7 @@ public class EventList {
 	private void build_list() {
 		// TODO Auto-generated method stub
 //		addBattleEvent();
+//		int a = Dice.throw_a_dice("1d3");
 		addWeatherEvent();
 		addINTEvent();
 		addAricultureEvent();
@@ -80,8 +81,17 @@ public class EventList {
 			addBattleEvent();
 		}
 		addMEDIEvent();
+		addSOCIEvent();
+
 	}
 
+
+	private void addSOCIEvent() {
+		// TODO Auto-generated method stub
+		Map sociMap;
+		sociMap = (Map) dataMap.get("SOCI");
+		eventList.put("SOCI", sociMap);
+	}
 
 	@SuppressWarnings("rawtypes")
 	private void addINTEvent() {
@@ -89,7 +99,7 @@ public class EventList {
 		Map intMap;
 		intMap = (Map) ((Map) dataMap.get("INT")).get("research");
 		eventList.put("INT", intMap);
-		System.out.println(intMap);
+//		System.out.println(intMap);
 	}
 	
 	@SuppressWarnings("rawtypes")

@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 import java.util.logging.Level;
 
 import javax.naming.spi.DirStateFactory.Result;
@@ -16,6 +17,7 @@ import org.omg.DynamicAny.NameDynAnyPair;
 
 import framework.MainFrame;
 import objects.Human;
+import objects.Organ;
 import objects.Status;
 
 public class Scenes {
@@ -40,6 +42,7 @@ public class Scenes {
 	
 	@SuppressWarnings("unchecked")
 	public void settle_Event() throws IOException {
+		int daily = Dice.throw_a_dice("1d4");
 		if (events.get("WEAT") != null) {
 			outpuTextArea.append((String) events.get("WEAT"));
 			outpuTextArea.append("\n");
@@ -68,6 +71,9 @@ public class Scenes {
 			motivate = motivate.replace("{name}", name);
 			check_value_change(objHuman, gob, type, influence);
 			if (motivate.length()>0) {add_motivation_list(objHuman, motivate);}
+			if (daily == 1) {
+				do_social();
+			}
 		}
 		if (events.get("AGRI") != null) {
 			Human objHuman = selectObject();
@@ -97,6 +103,9 @@ public class Scenes {
 			System.out.println(gob + "AGRI");
 			check_value_change(objHuman, gob, type, influence);
 			if (motivate.length()>0) {add_motivation_list(objHuman, motivate);}
+			if (daily == 2) {
+				do_social();
+			}
 		}
 		if (events.get("TRAV") != null) {
 			Human objHuman = selectObject();
@@ -242,6 +251,9 @@ public class Scenes {
 			}
 			outpuTextArea.append("After a brief round of firefight, the two sides decided to retreat.");
 			outpuTextArea.append("\n");
+			if (daily == 3) {
+				do_social();
+			}
 		}
 		if (events.get("MEDI") != null) {
 			List<Human> tList = selectObjects();
@@ -268,6 +280,7 @@ public class Scenes {
 						String motivate = (String) treatmentMap.get("motivate");
 						
 						check_value_change(subHuman, gob, type, influence);
+						chage_relation(objHuman, subHuman, gob, 0);
 						
 						motivate = motivate.replace("{name1}", objHuman.getFirstName());
 						motivate = motivate.replace("{name2}", subHuman.getFirstName());
@@ -280,9 +293,246 @@ public class Scenes {
 					}
 				}
 			}
+			if (daily == 4) {
+				do_social();
+			}
 		}
+//		System.out.println(socialMotivationMap);
+		all_check();
 	}
 	
+	private void chage_relation(Human objHuman, Human subHuman, String gobString, int type){
+		if (gobString.contains("good") ) {
+			if (type == 0) {
+				Map goodStatus =  Status.generate_good_relations_list();
+				Object[] keys = goodStatus.keySet().toArray();
+				Object randomKey = keys[6];
+				subHuman.relation.put(objHuman, (Status) goodStatus.get(randomKey));
+				outpuTextArea.append("After that,");
+				outpuTextArea.append(((Status) goodStatus.get(randomKey)).status_detail.replace("{name1}", subHuman.getFirstName()).replace("{name2}", objHuman.getFirstName()));
+				outpuTextArea.append("\n");
+			}else {
+				Map goodStatus =  Status.generate_good_relations_list();
+				Object[] keys = goodStatus.keySet().toArray();
+				Random random = new Random();
+				Object randomKey = keys[random.nextInt(keys.length-2)+1];
+				objHuman.relation.put(subHuman, (Status) goodStatus.get(randomKey));
+				subHuman.relation.put(objHuman, (Status) goodStatus.get(randomKey));
+				outpuTextArea.append("After that,");
+				outpuTextArea.append(((Status) goodStatus.get(randomKey)).status_detail.replace("{name1}", objHuman.getFirstName()).replace("{name2}", subHuman.getFirstName()));
+				outpuTextArea.append("\n");
+			}	
+		}
+		else {
+			if (type == 0) {
+				Map badStatus =  Status.generate_bad_relations_list();
+				Object[] keys = badStatus.keySet().toArray();
+				Random random = new Random();
+				Object randomKey = keys[random.nextInt(keys.length-2)+1];
+				subHuman.relation.put(objHuman, (Status) badStatus.get(randomKey));
+				outpuTextArea.append("After that,");
+				outpuTextArea.append(((Status) badStatus.get(randomKey)).status_detail.replace("{name1}", subHuman.getFirstName()).replace("{name2}", objHuman.getFirstName()));
+				outpuTextArea.append("\n");
+			}else {
+				Map badStatus =  Status.generate_bad_relations_list();
+				Object[] keys = badStatus.keySet().toArray();
+				Random random = new Random();
+				Object randomKey = keys[random.nextInt(keys.length-2)+1];
+				objHuman.relation.put(subHuman, (Status) badStatus.get(randomKey));
+				subHuman.relation.put(objHuman, (Status) badStatus.get(randomKey));
+				outpuTextArea.append("After that,");
+				outpuTextArea.append(((Status) badStatus.get(randomKey)).status_detail.replace("{name1}", objHuman.getFirstName()).replace("{name2}", subHuman.getFirstName()));
+				outpuTextArea.append("\n");
+			}
+			
+		}
+	}
+
+	private void all_check() throws IOException {
+		// TODO Auto-generated method stub
+		MainFrame.FOOD -= MainFrame.characList.size();
+		if (MainFrame.FOOD < 0) {
+			outpuTextArea.append("The team do not have enough food supply, people are starving.");
+			outpuTextArea.append("\n");
+			MainFrame.UNITY += MainFrame.FOOD; 
+		}
+		if (MainFrame.UNITY < 0) {
+			outpuTextArea.append("The team members began to lose confidence in reaching the civilized world.");
+			outpuTextArea.append("\n");
+			Human outHuman = selectObject();
+			outpuTextArea.append("Losing confidence in the way ahead, everyone abandon the team without saying goodbye.".replace("{name}", outHuman.get_FullName()));
+			Do_death(outHuman);
+			Do_end_of_story();
+		}
+		if (MainFrame.PRO > 25) {
+			outpuTextArea.append("Finally, everyone saw the \"civilized world\" "
+					+ "that showed its outline in the distance. "
+					+ "Everyone experienced a lot along the way, "
+					+ "and they successfully reached their destination. "
+					+ "This is the end of the story.");
+			outpuTextArea.append("\n");
+			String outputString = MainFrame.stroyTextArea.getText();
+			FileOutputStream fileOutputStream = null;
+	        File file = new File("output.txt");
+	        if(!file.exists()){
+	            file.createNewFile();
+	        }
+	        fileOutputStream = new FileOutputStream(file);
+	        fileOutputStream.write(outputString.getBytes("gbk"));
+	        fileOutputStream.flush();
+	        fileOutputStream.close();
+	        System.exit(0);
+		}
+		for (Human aHuman: MainFrame.characList) {
+			aHuman.body_status.time -= 1;
+			if (aHuman.body_status.time == 0) {
+				outpuTextArea.append(aHuman.get_FullName() + " is no longer " + aHuman.body_status.status_name);
+				outpuTextArea.append("\n");
+				aHuman.body_status = Status.generate_body_status_list().get("Normal");
+			}
+			aHuman.mental_status.time -= 1;
+			if (aHuman.mental_status.time == 0) {
+				outpuTextArea.append(aHuman.get_FullName() + " is no longer " + aHuman.mental_status.status_name);
+				outpuTextArea.append("\n");
+				aHuman.mental_status = Status.generate_good_moods_list().get("Normal");
+			}
+			for (Organ s: aHuman.body) {
+				s.status.time -= 1;
+				if (s.status.time == 0) {
+					outpuTextArea.append(aHuman.get_FullName()+"'s "+s.organ_name+" is no longer "+s.status.status_name);
+					outpuTextArea.append("\n");
+					s.status = Status.generate_body_status_list().get("health");
+				}
+			}
+			if (aHuman.HP < 10) {
+				aHuman.HP += 1;
+			}
+		}
+	}
+
+	private void do_social() throws IOException {
+		if (events.get("SOCI") != null) {
+			Map eventMap = (Map) events.get("SOCI");
+			if (flagString == "good") {
+				Map socialMap = (Map) eventMap.get("good");
+				List<Human> sociList = selectObjects();
+				for (Human objHuman: sociList) {
+					for (Human subHuman: sociList) {
+						if (objHuman == subHuman) {
+							continue;
+						}
+						if (socialMotivationMap.get(subHuman) != null) {
+							if (Dice.throw_a_dice("1d2") == 1) {
+								break;
+							}
+							int result = Dice.successful_level_check(objHuman.getSkill().getSkillMap().get("Socializing"));
+							Map socieventMap = (Map) socialMap.get(Integer.toString((Dice.throw_a_dice("1d" + socialMap.size()))-1));
+							Map tempMap = ((Map)socieventMap.get(Integer.toString(result)));
+							String motivateString = socialMotivationMap.get(subHuman);
+							String output = (String) socieventMap.get("eventdescription")
+										  + "\n"
+										  + (String) tempMap.get("resultdescription");
+							
+							String type = (String) tempMap.get("type");
+							String gob = (String) tempMap.get("goodorbad");
+							String influence = (String) tempMap.get("influence");
+							
+							output = output.replace("{name1}", objHuman.getFirstName());
+							output = output.replace("{name2}", subHuman.getFirstName());
+							output = output.replace("{motivate}", motivateString);
+							outpuTextArea.append(output);
+							outpuTextArea.append("\n");
+							
+							check_value_change(subHuman, gob, type, influence);
+							check_value_change(objHuman, gob, type, influence);
+							System.out.println("----");
+							System.out.println(gob);
+							System.out.println("----");
+							chage_relation(objHuman, subHuman, gob, 1);
+						}
+					}
+				}
+			}
+			else if (flagString == "bad") {
+				Map socialMap = (Map) eventMap.get("bad");
+				List<Human> sociList = selectObjects();
+				for (Human objHuman: sociList) {
+					for (Human subHuman: sociList) {
+						if (objHuman == subHuman) {
+							continue;
+						}
+						if (socialMotivationMap.get(subHuman) != null) {
+							if (Dice.throw_a_dice("1d2") == 1) {
+								break;
+							}
+							int result = Dice.successful_level_check(objHuman.getSkill().getSkillMap().get("Socializing"));
+							Map socieventMap = (Map) socialMap.get(Integer.toString((Dice.throw_a_dice("1d" + socialMap.size()))-1));
+							Map tempMap = ((Map)socieventMap.get(Integer.toString(result)));
+							String motivateString = socialMotivationMap.get(subHuman);
+							String output = (String) socieventMap.get("eventdescription")
+										+ "\n"
+										+ (String) tempMap.get("resultdescription");
+							
+							String type = (String) tempMap.get("type");
+							String gob = (String) tempMap.get("goodorbad");
+							String influence = (String) tempMap.get("influence");
+							
+							output = output.replace("{name1}", objHuman.getFirstName());
+							output = output.replace("{name2}", subHuman.getFirstName());
+							output = output.replace("{motivate}", motivateString);
+							outpuTextArea.append(output);
+							outpuTextArea.append("\n");
+							
+							check_value_change(subHuman, gob, type, influence);
+							check_value_change(objHuman, gob, type, influence);
+							chage_relation(objHuman, subHuman, gob, 1);
+						}
+					}
+				}
+			}
+			else{
+				Map socialMap;
+				if (Dice.throw_a_dice("1d2") == 1) {socialMap = (Map) eventMap.get("good");}
+				else {socialMap = (Map) eventMap.get("bad");}
+				
+				List<Human> sociList = selectObjects();
+				for (Human objHuman: sociList) {
+					for (Human subHuman: sociList) {
+						if (objHuman == subHuman) {
+							continue;
+						}
+						if (socialMotivationMap.get(subHuman) != null) {
+							if (Dice.throw_a_dice("1d2") == 1) {
+								break;
+							}
+							int result = Dice.successful_level_check(objHuman.getSkill().getSkillMap().get("Socializing"));
+							Map socieventMap = (Map) socialMap.get(Integer.toString((Dice.throw_a_dice("1d" + socialMap.size()))-1));
+							Map tempMap = ((Map)socieventMap.get(Integer.toString(result)));
+							String motivateString = socialMotivationMap.get(subHuman);
+							String output = (String) socieventMap.get("eventdescription")
+										+ "\n"
+										+ (String) tempMap.get("resultdescription");
+							
+							String type = (String) tempMap.get("type");
+							String gob = (String) tempMap.get("goodorbad");
+							String influence = (String) tempMap.get("influence");
+							
+							output = output.replace("{name1}", objHuman.getFirstName());
+							output = output.replace("{name2}", subHuman.getFirstName());
+							output = output.replace("{motivate}", motivateString);
+							outpuTextArea.append(output);
+							outpuTextArea.append("\n");
+							
+							check_value_change(subHuman, gob, type, influence);
+							check_value_change(objHuman, gob, type, influence);
+							chage_relation(objHuman, subHuman, gob, 1);
+						}
+					}
+				}
+			}
+		}
+	}
+		
 	private void Do_death(Human target) {
 		// TODO Auto-generated method stub
 		MainFrame.characList.remove(target);
@@ -352,7 +602,24 @@ public class Scenes {
 
 	private void change_mood(Human human, int i) {
 		// TODO Auto-generated method stub
-		
+		if (i == 1) {
+			Map goodStatus =  Status.generate_good_moods_list();
+			Object[] keys = goodStatus.keySet().toArray();
+			Random random = new Random();
+			Object randomKey = keys[random.nextInt(keys.length)];
+			human.mental_status = (Status) goodStatus.get(randomKey);
+			outpuTextArea.append(human.getMentalStatus().status_detail.replace("{name}", human.getFirstName()));
+			outpuTextArea.append("\n");
+		}
+		else {
+			Map badStatus =  Status.generate_bad_moods_list();
+			Object[] keys = badStatus.keySet().toArray();
+			Random random = new Random();
+			Object randomKey = keys[random.nextInt(keys.length)];
+			human.mental_status = (Status) badStatus.get(randomKey);
+			outpuTextArea.append(human.getMentalStatus().status_detail.replace("{name}", human.getFirstName()));
+			outpuTextArea.append("\n");
+		}
 	}
 
 	private Human selectObject() throws IOException {

@@ -3,6 +3,7 @@ package objects;
 import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
 import com.alibaba.fastjson.JSON;
 
@@ -131,9 +132,15 @@ public class Status {
 	}
 
 	public static void main(String args[]) {
-		System.out.println(generate_body_status_list());
-		System.out.println(generate_person_status_list());
-		System.out.println(generate_bad_moods_list());
-		System.out.println(generate_good_moods_list());
+		Map aMap = generate_body_status_list();
+		Object[] keys = aMap.keySet().toArray();
+		Random random = new Random();
+		Object randomKey = keys[random.nextInt(keys.length)];
+		System.out.println(aMap.get(randomKey));
+		System.out.println(randomKey);
+//		System.out.println(generate_body_status_list());
+//		System.out.println(generate_person_status_list());
+//		System.out.println(generate_bad_moods_list());
+//		System.out.println(generate_good_moods_list());
 	}
 }
