@@ -31,11 +31,11 @@ public class EventList {
 		this.dataMap.put("BATT", (Map) JSON.parse(DataLoader.readJsonFile(new File("./data/event/Battle_event.json"))));
 		System.out.println("¡Ì");
 		
-		this.dataMap.put("INT", (Map) JSON.parse(DataLoader.readJsonFile(new File("./data/event/Int_event.json"))));
+		this.dataMap.put( "INT", (Map) JSON.parse(DataLoader.readJsonFile(new File("./data/event/Int_event.json"))));
 		System.out.println("¡Ì");
 		
 		this.dataMap.put("MEDI", (Map) JSON.parse(DataLoader.readJsonFile(new File("./data/event/Medic_event.json"))));
-		System.out.println("x");
+		System.out.println("¡Ì");
 		
 		this.dataMap.put("TRAV", (Map) JSON.parse(DataLoader.readJsonFile(new File("./data/event/Travel_event.json"))));
 		System.out.println("¡Ì");
@@ -79,6 +79,7 @@ public class EventList {
 		if (Dice.throw_a_dice("1d100")<=20) {
 			addBattleEvent();
 		}
+		addMEDIEvent();
 	}
 
 
@@ -88,6 +89,15 @@ public class EventList {
 		Map intMap;
 		intMap = (Map) ((Map) dataMap.get("INT")).get("research");
 		eventList.put("INT", intMap);
+		System.out.println(intMap);
+	}
+	
+	@SuppressWarnings("rawtypes")
+	private void addMEDIEvent() {
+		// TODO Auto-generated method stub
+		Map intMap;
+		intMap = (Map) ((Map) dataMap.get("MEDI")).get("first_aid");
+		eventList.put("MEDI", intMap);
 		System.out.println(intMap);
 	}
 

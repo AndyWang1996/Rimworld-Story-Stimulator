@@ -16,6 +16,7 @@ import org.omg.DynamicAny.NameDynAnyPair;
 
 import framework.MainFrame;
 import objects.Human;
+import objects.Status;
 
 public class Scenes {
 	
@@ -150,6 +151,7 @@ public class Scenes {
 			
 			MainFrame.characList.add(subHuman);
 			MainFrame.nameList.addElement(subHuman.get_FullName());
+			Human.create_relation(MainFrame.characList);
 		}
 //		System.out.println(socialMotivationMap);
 		if (events.get("BATT") != null) {
@@ -191,7 +193,7 @@ public class Scenes {
 				motivate = motivate.replace("{name1}", human.getFirstName());
 				motivate = motivate.replace("{name2}", target.getFirstName());
 				check_value_change(target, gob, type, influence);
-				outpuTextArea.append(target.get_FullName() + ":" + target.HP);
+				outpuTextArea.append(target.get_FullName() + " HP:" + target.HP);
 				outpuTextArea.append("\n");
 				if (target.HP <= 0) {
 					enermyHumans.remove(target);
@@ -241,6 +243,44 @@ public class Scenes {
 			outpuTextArea.append("After a brief round of firefight, the two sides decided to retreat.");
 			outpuTextArea.append("\n");
 		}
+		if (events.get("MEDI") != null) {
+			List<Human> tList = selectObjects();
+			
+			Map<String, Object> eventMap = (Map)((Map<String, java.lang.Object>) events.get("MEDI"));
+
+			for(Human objHuman: tList) {
+				for(Human subHuman: teamList) {
+					if (objHuman == subHuman) {
+						continue;
+					}
+					if (!subHuman.getBodyStatus().status_name.contains("Normal")) {
+						int result = Dice.successful_level_check(objHuman.getSkill().getSkillMap().get("Medic"));
+						Map treatmentMap = (Map) eventMap.get(Integer.toString(result));
+						String output = (String) treatmentMap.get("resultdescription");
+						output = output.replace("{name1}", objHuman.getFirstName());
+						output = output.replace("{name2}", subHuman.getFirstName());
+						outpuTextArea.append(output);
+						outpuTextArea.append("\n");
+						
+						String type = (String) treatmentMap.get("type");
+						String gob = (String) treatmentMap.get("goodorbad");
+						String influence = (String) treatmentMap.get("influence");
+						String motivate = (String) treatmentMap.get("motivate");
+						
+						check_value_change(subHuman, gob, type, influence);
+						
+						motivate = motivate.replace("{name1}", objHuman.getFirstName());
+						motivate = motivate.replace("{name2}", subHuman.getFirstName());
+						
+						if (motivate.length()>0) {add_motivation_list(objHuman, motivate);}
+						
+						if (subHuman.getHP() <= 0) {
+							Do_death(subHuman);
+						}
+					}
+				}
+			}
+		}
 	}
 	
 	private void Do_death(Human target) {
@@ -280,8 +320,23 @@ public class Scenes {
 				if (human.HP > 10) {
 					human.HP = 10;
 				}
+				outpuTextArea.append(human.get_FullName() +" HP:" + human.HP);
+				outpuTextArea.append("\n");
 			}else {
 				human.HP -= Dice.throw_a_dice(influence);
+				Map<String, Status> bodypartStatus = Status.generate_body_status_list();
+				Map<String, Status> characterStatus = Status.generate_person_status_list();
+//				System.out.println(bodypartStatus);
+				int index = Dice.throw_a_dice("1d22")-1;
+				human.getBodyList().get(index).status = bodypartStatus.get("bleeding");
+				human.body_status = characterStatus.get("painful");
+				outpuTextArea.append(human.body_status.status_detail.replace("{name}", human.getFirstName()));
+				outpuTextArea.append("\n");
+				outpuTextArea.append(human.getFirstName() 
+						+ "'s" 
+						+ ' ' 
+						+ human.getBodyList().get(index).status.status_detail.replace("{name}", human.getBodyList().get(index).organ_name));
+				outpuTextArea.append("\n");
 			}
 		}
 		else if (type.contains("unity")) {

@@ -22,8 +22,8 @@ public class Human {
 	public int HP;
 	public int san;
 	int food;
-	Status body_status;
-	Status mental_status;
+	public Status body_status;
+	public Status mental_status;
 	Weapon weapon;
 	
 	
