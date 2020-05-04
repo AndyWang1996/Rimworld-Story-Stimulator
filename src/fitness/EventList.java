@@ -84,6 +84,10 @@ public class EventList {
 			agriMap = (Map) dataMap.get("AGRI");
 			agriEvent = (Map) agriMap.get("gather");
 			eventList.put("AGRI", agriEvent.get(Integer.toString(Dice.throw_a_dice("1d" + (agriEvent.size()-1)))));
+		}else {
+			agriMap = (Map) dataMap.get("AGRI");
+			agriEvent = (Map) agriMap.get("hunter");
+			eventList.put("AGRI", agriEvent.get(Integer.toString(Dice.throw_a_dice("1d" + (agriEvent.size()-1)))));
 		}
 	}
 

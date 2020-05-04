@@ -23,6 +23,7 @@ import javax.xml.stream.events.StartDocument;
 import fitness.Dice;
 import fitness.EventList;
 import objects.Human;
+import objects.Weapon;
 
 public class MainFrame {
 
@@ -173,44 +174,31 @@ public class MainFrame {
 
 	private void Do_sth_normal() {
 		// TODO Display the story
-		globaList.swap_flag("normal");
-		globaList.excute_Eventlist(stroyTextArea, characList);
-		
+//		globaList.swap_flag("normal");
+//		globaList.excute_Eventlist(stroyTextArea, characList);
+//		refresh_status();
+//		Weapon.test();
+//		fOODJLabel.setText("FOOD:" + Integer.toString(FOOD));	
 	}
 
 	private void Do_sth_bad() {
 		// TODO Display the story
 		globaList.swap_flag("bad");
 		globaList.excute_Eventlist(stroyTextArea, characList);
+		refresh_status();
 	}
 
 	private void Do_sth_good() {
 		// TODO Display the story
 		globaList.swap_flag("good");
 		globaList.excute_Eventlist(stroyTextArea, characList);	
+		refresh_status();
 	}
 	
-	public static void refresh_status(int fp, int pp, int up) {
-		if (fp!=0) {
-			FOOD += fp;
-			fOODJLabel.setText("FOOD:" + Integer.toString(FOOD));
-			stroyTextArea.append("The food value has changed:" + fp + "\n");
-			
-		}
-		
-		if (pp!=0) {
-			PRO += pp;
-			tECHJLabel.setText("PROCESS:" + Integer.toString(PRO));
-			stroyTextArea.append("The process value has changed:" + pp + "\n");
-			
-		}
-		
-		if (fp!=0) {
-			UNITY += up;
-			uNITYJLabel.setText("UNITY:" + Integer.toString(UNITY));
-			stroyTextArea.append("The unity value has changed:" + up + "\n");
-			
-		}
+	public static void refresh_status() {
+		fOODJLabel.setText("FOOD:" + Integer.toString(FOOD));
+		tECHJLabel.setText("PROCESS:" + Integer.toString(PRO));
+		uNITYJLabel.setText("UNITY:" + Integer.toString(UNITY));
 	}
 	
 	public void pause(long num) {

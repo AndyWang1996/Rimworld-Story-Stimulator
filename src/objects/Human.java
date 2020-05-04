@@ -19,8 +19,8 @@ public class Human {
 	Map <Human, Status> relation = new HashMap<>();
 	Skill skill;
 	int gender; //1=male 0=female
-	int HP;
-	int san;
+	public int HP;
+	public int san;
 	int food;
 	Status body_status;
 	Status mental_status;

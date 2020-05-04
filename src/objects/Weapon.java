@@ -1,6 +1,8 @@
 package objects;
 
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -9,6 +11,7 @@ import com.alibaba.fastjson.JSON;
 
 import database.DataLoader;
 import fitness.Dice;
+import framework.MainFrame;
 
 public class Weapon {
 	
@@ -30,7 +33,23 @@ public class Weapon {
 		return new Weapon(weaponList.get(Dice.throw_a_dice("1d"+weaponList.size())-1));
 	}
 	
-	public static void main(String args[]) {
-		System.out.println(getWeapon().getNameString());
+	public static void test() {
+		MainFrame.FOOD += 1;
+	}
+	
+	public static void main(String args[]) throws IOException {
+//		String outputString = "wqoeiruqwoeiurwoirowieuro";
+//		FileOutputStream fileOutputStream = null;
+//        File file = new File("output.txt");
+//        if(!file.exists()){
+//            file.createNewFile();
+//        }
+//        fileOutputStream = new FileOutputStream(file);
+//        fileOutputStream.write(outputString.getBytes("gbk"));
+//        fileOutputStream.flush();
+//        fileOutputStream.close();
+//        System.exit(0);
+		String aString = "";
+		System.out.println();
 	}
 }
