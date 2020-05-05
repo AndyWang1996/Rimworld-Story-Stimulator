@@ -86,6 +86,7 @@ public class EventList {
 	}
 
 
+	@SuppressWarnings("rawtypes")
 	private void addSOCIEvent() {
 		// TODO Auto-generated method stub
 		Map sociMap;

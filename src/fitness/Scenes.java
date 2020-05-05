@@ -8,12 +8,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
-import java.util.logging.Level;
 
-import javax.naming.spi.DirStateFactory.Result;
 import javax.swing.JTextArea;
-
-import org.omg.DynamicAny.NameDynAnyPair;
 
 import framework.MainFrame;
 import objects.Human;
@@ -40,7 +36,7 @@ public class Scenes {
 		this.outpuTextArea = storyArea;
 	}
 	
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "rawtypes", "unused" })
 	public void settle_Event() throws IOException {
 		int daily = Dice.throw_a_dice("1d4");
 		if (events.get("WEAT") != null) {
@@ -301,6 +297,7 @@ public class Scenes {
 		all_check();
 	}
 	
+	@SuppressWarnings("rawtypes")
 	private void chage_relation(Human objHuman, Human subHuman, String gobString, int type){
 		if (gobString.contains("good") ) {
 			if (type == 0) {
@@ -410,6 +407,7 @@ public class Scenes {
 		}
 	}
 
+	@SuppressWarnings("rawtypes")
 	private void do_social() throws IOException {
 		if (events.get("SOCI") != null) {
 			Map eventMap = (Map) events.get("SOCI");
@@ -600,6 +598,7 @@ public class Scenes {
 		}
 	}
 
+	@SuppressWarnings("rawtypes")
 	private void change_mood(Human human, int i) {
 		// TODO Auto-generated method stub
 		if (i == 1) {

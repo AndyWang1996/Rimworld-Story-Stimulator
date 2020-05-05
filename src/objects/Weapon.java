@@ -1,7 +1,6 @@
 package objects;
 
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -49,7 +48,7 @@ public class Weapon {
 //        fileOutputStream.flush();
 //        fileOutputStream.close();
 //        System.exit(0);
-		String aString = "";
-		System.out.println();
+//		String aString = "";
+//		System.out.println();
 	}
 }

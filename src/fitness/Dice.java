@@ -5,8 +5,6 @@ import java.util.StringTokenizer;
 
 import javax.swing.JTextArea;
 
-import com.alibaba.fastjson.asm.Type;
-
 public class Dice {
 	
 	private static Random random = new Random(System.currentTimeMillis());

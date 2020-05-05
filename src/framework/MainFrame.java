@@ -197,7 +197,7 @@ public class MainFrame {
 		nameList.addElement(firstHuman.get_FullName());
 		globaList =  new EventList("normal");
 		//初始化一个情景，创建初始人物
-		stroyTextArea.append("{name} is an explorer from rimworld. who decided to explore forward and find a way to the \"civilized world\"");
+		stroyTextArea.append("{name} is an explorer from rimworld. who decided to explore forward and find a way to the \"civilized world\"".replace("{name}", firstHuman.get_FullName()));
 		stroyTextArea.append("\n");
 		FOOD = 15;
 		UNITY = 20;

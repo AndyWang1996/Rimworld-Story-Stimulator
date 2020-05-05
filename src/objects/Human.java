@@ -54,6 +54,7 @@ public class Human {
 		return c;			
 	}
 
+	@SuppressWarnings("rawtypes")
 	public static void create_relation(List<Human> team) {
 		// TODO Auto-generated method stub
 		Map relationMap = Status.generate_good_relations_list();

@@ -131,6 +131,7 @@ public class Status {
 		this.time = t;
 	}
 
+	@SuppressWarnings("rawtypes")
 	public static void main(String args[]) {
 		Map aMap = generate_body_status_list();
 		Object[] keys = aMap.keySet().toArray();

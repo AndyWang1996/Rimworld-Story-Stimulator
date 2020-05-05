@@ -4,8 +4,6 @@ import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.omg.CORBA.PUBLIC_MEMBER;
-
 import com.alibaba.fastjson.JSON;
 
 import database.DataLoader;

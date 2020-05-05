@@ -1,0 +1,36 @@
+{
+ "description": "Geographic features. From the OBO Environment Ontology",
+ "source": "https://github.com/EnvironmentOntology/envo",
+ "entries":
+ [
+  "ocean",
+  "sea",
+  "saline lake",
+  "river",
+  "abandoed sand pit quarry",
+  "bay",
+  "fjord",
+  "waterfall",
+  "tidal creek",
+  "gas geyser",
+  "volcanic crater lake",
+  "underground lake",
+  "underground river",
+  "underground stream",
+  "forest",
+  "cliff",
+  "beach",
+  "mangrove island",
+  "freezed lake surface",
+  "cove",
+  "lake bed",
+  "land-tied island",
+  "shore",
+  "brine pool",
+  "canal head reservoir",
+  "lake shore",
+  "stream bed",
+  "river bed",
+  "sea shore"
+ ]
+}

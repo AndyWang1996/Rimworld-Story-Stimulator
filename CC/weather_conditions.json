@@ -1,0 +1,22 @@
+{
+  "description": "A list of phrases describing weather conditions. This list includes all possible phrases that may be provided by the US National Weather Service's feeds of current weather conditions.",
+  "source": "http://w1.weather.gov/xml/current_obs/weather.php",
+  "conditions": [
+    "Sunny",
+    "Cloudy",
+    "Fair",
+    "Clear",
+    "Overcast",
+    "Breezy",
+    "Fog",
+    "Freezing",
+    "Smoke",
+    "Rain",
+    "Drizzle",
+    "Hail",
+    "Snow",
+    "Thunderstorm",
+    "Snow",
+    "Windy"
+  ]
+}

@@ -1,12 +1,6 @@
 package objects;
 
-import java.io.File;
 import java.util.List;
-import java.util.Map;
-
-import com.alibaba.fastjson.JSON;
-
-import database.DataLoader;
 
 public class Event {
 	public static String[] eventType = {
@@ -37,7 +31,7 @@ public class Event {
 	};
 	
 	public static void main(String args[]) {
-		Map<String, Object> map = (Map<String, Object>) JSON.parse(DataLoader.readJsonFile(new File("./data/event/Agri_event.json")));
-		System.out.println(((Map)((Map)map.get("gather")).get(Integer.toString(0))).get(Integer.toString(0)));
+//		Map<String, Object> map = (Map<String, Object>) JSON.parse(DataLoader.readJsonFile(new File("./data/event/Agri_event.json")));
+//		System.out.println(((Map)((Map)map.get("gather")).get(Integer.toString(0))).get(Integer.toString(0)));
 	}
 }
